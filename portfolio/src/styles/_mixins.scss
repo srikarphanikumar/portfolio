@@ -1,0 +1,19 @@
+@mixin mobile-view {
+  @media all and (max-width: 1199.98px) { @content; }
+}
+
+@mixin xs-view {
+  @media all and (max-width: 375px) { @content; }
+}
+
+@mixin safari-only {
+  @supports (-webkit-marquee-repetition: infinite) and (object-fit: fill) {
+    @content;
+  }
+}
+
+@mixin ie-only {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
