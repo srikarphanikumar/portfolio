@@ -8,6 +8,7 @@ import { MaterialModule } from '../material-module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { SriButtonComponent } from './components/sri-button/sri-button.component';
 
 @NgModule({
   imports: [
@@ -22,14 +23,16 @@ import { HttpClientModule } from '@angular/common/http';
     SriInputComponent,
     SriRadioComponent,
     SriRadioGroupComponent,
-    SriSelectComponent
+    SriSelectComponent,
+    SriButtonComponent
   ],
   declarations: [
     SriCheckboxComponent,
     SriInputComponent,
     SriRadioComponent,
     SriRadioGroupComponent,
-    SriSelectComponent
+    SriSelectComponent,
+    SriButtonComponent
   ],
   providers: [],
 })
