@@ -6,9 +6,7 @@
 @import "./styles/mixins";
 
 // Material Custom Theme
-$portfolio-typography: mat-typography-config(
-  $font-family: $font_family
-);
+$portfolio-typography: mat-typography-config();
 
 @include mat-core($portfolio-typography);
 $portfolio-primary: mat-palette($sri-colors, primary);
