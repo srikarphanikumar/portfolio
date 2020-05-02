@@ -1,3 +1,9 @@
-<p>
-  sri-select works!
-</p>
+<mat-form-field>
+  <mat-label>{{ placeholder }}</mat-label>
+  <mat-select [attr.aria-label]="label" disableOptionCentering="true" [formControlName]="formControlName" role="listbox"
+    aria-hidden="false" (selectionChange)="selectChange($event)">
+    <mat-option *ngIf="!!showBlank" role="option"></mat-option>
+    <mat-option *ngFor="let option of options" role="option" [value]="option.value" [disabled]="option?.disabled">
+      {{ option.name }}</mat-option>
+  </mat-select>
+</mat-form-field>

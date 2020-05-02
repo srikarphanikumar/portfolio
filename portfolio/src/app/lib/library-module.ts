@@ -4,9 +4,19 @@ import { SriInputComponent } from './components/sri-input/sri-input.component';
 import { SriRadioComponent } from './components/sri-radio/sri-radio.component';
 import { SriRadioGroupComponent } from './components/sri-radio-group/sri-radio-group.component';
 import { SriSelectComponent } from './components/sri-select/sri-select.component';
+import { MaterialModule } from '../material-module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [],
+  imports: [
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule
+  ],
   exports: [
     SriCheckboxComponent,
     SriInputComponent,

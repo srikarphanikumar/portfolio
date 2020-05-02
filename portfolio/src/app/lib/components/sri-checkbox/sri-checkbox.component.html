@@ -1,3 +1,9 @@
-<p>
-  sri-checkbox works!
-</p>
+<mat-checkbox
+  [name]="name"
+  [value]="value"
+  color="primary"
+  [formControlName]="formControlName"
+  (change)="changeEvent($event)"
+>
+  <ng-content></ng-content>
+</mat-checkbox>
