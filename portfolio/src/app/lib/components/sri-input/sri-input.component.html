@@ -1,0 +1,11 @@
+<mat-form-field class="example-full-width">
+  <mat-label>{{ label }}</mat-label>
+  <input matInput
+    [name]="formControlName"
+    [formControlName]="formControlName"
+    [placeholder]="placeholder" 
+    [value]="value"
+    [maxLength]="maxLength"
+    [readonly]="readonly"
+    (blur)="onBlurMethod($event)">
+</mat-form-field>
