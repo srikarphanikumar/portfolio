@@ -1,0 +1,32 @@
+button {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.6rem;
+  width: 17.6rem;
+  border-radius: 2rem !important;
+  -webkit-border-radius: 2rem !important;
+  -moz-border-radius: 2rem !important;
+  -o-border-radius: 2rem !important;
+  &[disabled] {
+    pointer-events: none;
+    border-color: #ccc !important;
+    .mat-button-wrapper {
+      color: #757575;
+    }
+  }
+
+  &.mat-button {
+    color: blue !important;
+  }
+  &.mat-stroked-button {
+    color: blue !important;
+    border: 2px solid blue !important;
+    &:disabled {
+      border-color: #ccc;
+    }
+  }
+}
+.mat-button-focus-overlay {
+  background: none !important;
+  text-decoration: none !important;
+}
