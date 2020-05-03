@@ -2,7 +2,7 @@ button {
   color: #fff !important;
   font-weight: 700;
   font-size: 1.6rem;
-  width: 17.6rem;
+  min-width: 17.6rem;
   border-radius: 2rem !important;
   -webkit-border-radius: 2rem !important;
   -moz-border-radius: 2rem !important;
@@ -16,11 +16,11 @@ button {
   }
 
   &.mat-button {
-    color: blue !important;
+    color: black !important;
   }
   &.mat-stroked-button {
-    color: blue !important;
-    border: 2px solid blue !important;
+    color: black !important;
+    border: 2px solid black !important;
     &:disabled {
       border-color: #ccc;
     }
