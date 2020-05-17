@@ -1,13 +1,14 @@
 .full-page-image-container {
-  background-image: url("../../../assets/images/white-room.jpg");
+  background-image: url("../../../assets/images/noise.svg");
   height: 100%;
-  background-position: inherit;
-  background-repeat: space;
+  background-position: center 70%;
+  background-repeat: no-repeat;
   background-size: cover;
+  color: white;
 }
 .welcome {
   padding: 185px 35px 80px 310px;
-  font-family: cursive;
+  // font-family: cursive;
 }
 h5 {
   text-align: left;

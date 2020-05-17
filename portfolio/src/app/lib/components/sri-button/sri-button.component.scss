@@ -16,13 +16,13 @@ button {
   }
 
   &.mat-button {
-    color: black !important;
+    color: white !important;
   }
   &.mat-stroked-button {
-    color: black !important;
-    border: 2px solid black !important;
+    color: white !important;
+    border: 2px solid white !important;
     &:disabled {
-      border-color: #ccc;
+      border-color: #f4f4f4;
     }
   }
 }
