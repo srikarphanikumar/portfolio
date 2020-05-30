@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-sri-button',
+  selector: 'sri-button',
   templateUrl: './sri-button.component.html',
   styleUrls: ['./sri-button.component.scss'],
   encapsulation: ViewEncapsulation.None
