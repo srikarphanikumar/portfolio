@@ -9,6 +9,10 @@ import { LibraryModule } from './lib/library-module';
 import { HomeComponent } from './ui/home/home.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
+import { MyselfComponent } from './ui/myself/myself.component';
+import { CareerComponent } from './ui/career/career.component';
+import { ContactMeComponent } from './ui/contact-me/contact-me.component';
+import { TechStackComponent } from './ui/tech-stack/tech-stack.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { FooterComponent } from './ui/footer/footer.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    MyselfComponent,
+    CareerComponent,
+    ContactMeComponent,
+    TechStackComponent,
   ],
   imports: [
     BrowserModule,

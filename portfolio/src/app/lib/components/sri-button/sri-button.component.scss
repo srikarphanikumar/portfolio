@@ -1,5 +1,5 @@
 button {
-  color: #fff !important;
+  color: black !important;
   font-weight: 700;
   font-size: 1.6rem;
   min-width: 17.6rem;
@@ -16,11 +16,11 @@ button {
   }
 
   &.mat-button {
-    color: white !important;
+    color: black !important;
   }
   &.mat-stroked-button {
-    color: white !important;
-    border: 2px solid white !important;
+    color: black !important;
+    border: 2px solid black !important;
     &:disabled {
       border-color: #f4f4f4;
     }
