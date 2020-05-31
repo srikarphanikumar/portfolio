@@ -1,0 +1,28 @@
+.container {
+  background-color: lightsteelblue;
+}
+.col-6 {
+  padding: 0;
+}
+.photo {
+  margin: 0;
+  padding: 0;
+  height: 900px;
+  width: 500px;
+}
+h3 {
+  padding: 20px;
+  margin-top: 20px;
+}
+.quote {
+  padding: 20px 10px 20px 10px;
+  font-style: italic;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.signature {
+  float: right !important;
+}
+.btn-right {
+  float: right;
+  padding: 20px;
+}
