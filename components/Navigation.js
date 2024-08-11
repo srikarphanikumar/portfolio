@@ -1,11 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(true);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const navItems = [
         { name: 'Home', path: '/', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
@@ -16,11 +30,11 @@ const Navigation = () => {
     ];
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-10 bg-gradient-to-r from-purple-600 to-blue-500">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg">
             <nav className="container mx-auto px-4 py-2">
                 <div className="md:hidden">
                     <motion.button
-                        className="text-white p-2"
+                        className="text-green-300 p-2"
                         onClick={() => setIsOpen(!isOpen)}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -31,9 +45,9 @@ const Navigation = () => {
                     </motion.button>
                 </div>
                 <AnimatePresence>
-                    {(isOpen || window.innerWidth > 768) && (
+                    {(!isMobile || isOpen) && (
                         <motion.ul
-                            className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 bg-gradient-to-r from-purple-600 to-blue-500 md:bg-none p-4 md:p-0"
+                            className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 bg-gray-900 md:bg-transparent p-4 md:p-0"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
@@ -47,7 +61,7 @@ const Navigation = () => {
                                 >
                                     <Link href={item.path}>
                                         <motion.span
-                                            className="flex flex-col items-center text-white"
+                                            className="flex flex-col items-center text-green-300"
                                             whileHover={{ scale: 1.1, rotate: 5 }}
                                             whileTap={{ scale: 0.9 }}
                                         >

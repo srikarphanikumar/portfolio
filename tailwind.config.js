@@ -10,6 +10,7 @@ module.exports = {
                 'serif': ['Georgia', 'serif'],
                 'mono': ['Courier New', 'monospace'],
                 'cursive': ['Brush Script MT', 'cursive'],
+                'space-mono': ['"Space Mono"', 'monospace'],
             },
         },
     },
