@@ -81,7 +81,7 @@ const About = () => {
                 >
                     <h3 className="text-2xl font-semibold mb-4 text-white">Fun Fact</h3>
                     <p className="text-gray-300">
-                        When I'm not coding, you can find me [insert your hobby or interesting fact about yourself]!
+                        When I am not coding, you can find me [insert your hobby or interesting fact about yourself]!
                     </p>
                 </motion.div>
             </div>
