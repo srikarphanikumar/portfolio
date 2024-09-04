@@ -1,9 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaAngular, FaJenkins, FaAccessibleIcon } from 'react-icons/fa';
 import { SiTailwindcss, SiNextdotjs, SiBootstrap, SiSass, SiMysql, SiTypescript, SiGit, SiDocker, SiRedux } from 'react-icons/si';
-import { MdOutlineMaterialUI } from 'react-icons/md';
+import { MdOutlineDesignServices } from 'react-icons/md';
 import { TbBrandReactNative } from 'react-icons/tb';
 
 const skills = [
@@ -23,12 +23,12 @@ const skills = [
     { name: 'Docker', icon: SiDocker, category: 'Tool', color: '#2496ED', proficiency: 75 },
     { name: 'a11y', icon: FaAccessibleIcon, category: 'Frontend', color: '#0076C0', proficiency: 82 },
     { name: 'Jenkins', icon: FaJenkins, category: 'Tool', color: '#D33833', proficiency: 78 },
-    { name: 'Material UI', icon: MdOutlineMaterialUI, category: 'Styling', color: '#0081CB', proficiency: 86 },
-    { name: 'ngRx', icon: TbBrandReactNative, category: 'Frontend', color: '#BA2BD2', proficiency: 79 },
+    { name: 'UI/UX', icon: MdOutlineDesignServices, category: 'Design', color: '#0081CB', proficiency: 86 },
+    { name: 'React Native', icon: TbBrandReactNative, category: 'Mobile', color: '#61DAFB', proficiency: 79 },
     { name: 'Redux', icon: SiRedux, category: 'Frontend', color: '#764ABC', proficiency: 84 }
 ];
 
-const SkillElement = ({ skill, index, onHover }) => {
+const SkillElement = ({ skill, index, onHover, onTouch }) => {
     if (!skill) return null;
     return (
         <motion.div
@@ -37,28 +37,51 @@ const SkillElement = ({ skill, index, onHover }) => {
             whileHover={{ scale: 1.1, backgroundColor: skill.color }}
             onHoverStart={() => onHover(skill)}
             onHoverEnd={() => onHover(null)}
+            onTouchStart={() => onTouch(skill)}
+            onTouchEnd={() => onTouch(null)}
         >
             {skill.icon && <skill.icon className="text-2xl mb-1" style={{ color: skill.color }} />}
             <div className="text-xs font-bold text-center">{skill.name}</div>
-            {/* <div className="text-xs">{index + 1}</div> */}
         </motion.div>
     );
 };
 
 const Skills = () => {
     const [hoveredSkill, setHoveredSkill] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768); // Adjust this breakpoint as needed
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const handleInteraction = (skill) => {
+        if (isMobile) {
+            // On mobile, toggle the skill info
+            setHoveredSkill(prevSkill => prevSkill === skill ? null : skill);
+        } else {
+            // On desktop, update the hovered skill
+            setHoveredSkill(skill);
+        }
+    };
 
     const leftSkills = skills.slice(0, 7);
     const bottomSkills = skills.slice(7, 13);
     const rightSkills = skills.slice(13);
 
     return (
-        <div className="w-full h-full flex flex-col justify-between p-4 mt-[-1]">
+        <div className="w-full h-full flex flex-col justify-between p-2 mt-[-1]">
             <div className="flex-1 flex justify-between">
                 {/* Left column */}
                 <div className="w-1/4 flex flex-col justify-evenly items-end">
                     {leftSkills.map((skill, index) => (
-                        <SkillElement key={skill.name} skill={skill} index={index} onHover={setHoveredSkill} />
+                        <SkillElement key={skill.name} skill={skill} index={index} onHover={handleInteraction} onTouch={handleInteraction} />
                     ))}
                 </div>
 
@@ -82,7 +105,7 @@ const Skills = () => {
                 {/* Right column */}
                 <div className="w-1/4 flex flex-col justify-evenly items-start">
                     {rightSkills.map((skill, index) => (
-                        <SkillElement key={skill.name} skill={skill} index={index + 13} onHover={setHoveredSkill} />
+                        <SkillElement key={skill.name} skill={skill} index={index + 13} onHover={handleInteraction} onTouch={handleInteraction} />
                     ))}
                 </div>
             </div>
@@ -90,7 +113,7 @@ const Skills = () => {
             {/* Bottom row */}
             <div className="flex justify-center mt-4">
                 {bottomSkills.map((skill, index) => (
-                    <SkillElement key={skill.name} skill={skill} index={index + 7} onHover={setHoveredSkill} />
+                    <SkillElement key={skill.name} skill={skill} index={index + 7} onHover={handleInteraction} onTouch={handleInteraction} />
                 ))}
             </div>
         </div>

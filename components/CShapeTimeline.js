@@ -119,7 +119,7 @@ const CShapeTimeline = () => {
     }, []);
 
     return (
-        <div className="c-shape-timeline">
+        <div className="c-shape-timeline overflow-hidden">
             <div className="timeline-container">
                 <div className="timeline-items">
                     {experiences.map((exp) => (
