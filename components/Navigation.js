@@ -26,8 +26,8 @@ const Navigation = () => {
         { name: 'About', path: '/about', icon: FaUser },
         { name: 'Skills', path: '/skills', icon: FaCogs },
         { name: 'Experience', path: '/projects', icon: FaBriefcase },
-        { name: 'Contact', path: '/contact', icon: FaEnvelope },
-        { name: 'Portfolio', path: '/portfolio', icon: FaFolder }
+        { name: 'Portfolio', path: '/portfolio', icon: FaFolder },
+        { name: 'Contact', path: '/contact', icon: FaEnvelope }
     ];
 
     return (

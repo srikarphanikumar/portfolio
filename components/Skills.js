@@ -1,8 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaAngular, FaJenkins, FaAccessibleIcon } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiBootstrap, SiSass, SiMysql, SiTypescript, SiGit, SiDocker, SiRedux } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaAngular, FaJenkins, FaAccessibleIcon, FaAws, FaDocker } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiBootstrap, SiSass, SiMysql, SiTypescript, SiGit, SiRedux, SiFirebase, SiMongodb } from 'react-icons/si';
 import { MdOutlineDesignServices } from 'react-icons/md';
 import { TbBrandReactNative } from 'react-icons/tb';
 
@@ -20,12 +20,15 @@ const skills = [
     { name: 'SASS', icon: SiSass, category: 'Styling', color: '#CC6699', proficiency: 80 },
     { name: 'TypeScript', icon: SiTypescript, category: 'Language', color: '#3178C6', proficiency: 85 },
     { name: 'Git', icon: SiGit, category: 'Tool', color: '#F05032', proficiency: 88 },
-    { name: 'Docker', icon: SiDocker, category: 'Tool', color: '#2496ED', proficiency: 75 },
+    { name: 'Docker', icon: FaDocker, category: 'Tool', color: '#2496ED', proficiency: 75 },
     { name: 'a11y', icon: FaAccessibleIcon, category: 'Frontend', color: '#0076C0', proficiency: 82 },
     { name: 'Jenkins', icon: FaJenkins, category: 'Tool', color: '#D33833', proficiency: 78 },
     { name: 'UI/UX', icon: MdOutlineDesignServices, category: 'Design', color: '#0081CB', proficiency: 86 },
     { name: 'React Native', icon: TbBrandReactNative, category: 'Mobile', color: '#61DAFB', proficiency: 79 },
-    { name: 'Redux', icon: SiRedux, category: 'Frontend', color: '#764ABC', proficiency: 84 }
+    { name: 'Redux', icon: SiRedux, category: 'Frontend', color: '#764ABC', proficiency: 84 },
+    { name: 'AWS', icon: FaAws, category: 'Cloud', color: '#FF9900', proficiency: 75 },
+    { name: 'Firebase', icon: SiFirebase, category: 'Backend', color: '#FFCA28', proficiency: 80 },
+    { name: 'MongoDB', icon: SiMongodb, category: 'Database', color: '#47A248', proficiency: 78 },
 ];
 
 const SkillElement = ({ skill, index, onHover, onTouch }) => {
@@ -52,7 +55,7 @@ const Skills = () => {
 
     useEffect(() => {
         const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768); // Adjust this breakpoint as needed
+            setIsMobile(window.innerWidth <= 768);
         };
 
         checkMobile();
@@ -63,23 +66,21 @@ const Skills = () => {
 
     const handleInteraction = (skill) => {
         if (isMobile) {
-            // On mobile, toggle the skill info
             setHoveredSkill(prevSkill => prevSkill === skill ? null : skill);
         } else {
-            // On desktop, update the hovered skill
             setHoveredSkill(skill);
         }
     };
 
     const leftSkills = skills.slice(0, 7);
-    const bottomSkills = skills.slice(7, 13);
-    const rightSkills = skills.slice(13);
+    const rightSkills = skills.slice(7, 14);
+    const bottomSkills = skills.slice(14);
 
     return (
         <div className="w-full h-full flex flex-col justify-between p-2 mt-[-1]">
             <div className="flex-1 flex justify-between">
                 {/* Left column */}
-                <div className="w-1/4 flex flex-col justify-evenly items-end">
+                <div className="w-1/4 flex flex-col justify-between items-end">
                     {leftSkills.map((skill, index) => (
                         <SkillElement key={skill.name} skill={skill} index={index} onHover={handleInteraction} onTouch={handleInteraction} />
                     ))}
@@ -103,17 +104,17 @@ const Skills = () => {
                 </div>
 
                 {/* Right column */}
-                <div className="w-1/4 flex flex-col justify-evenly items-start">
+                <div className="w-1/4 flex flex-col justify-between items-start">
                     {rightSkills.map((skill, index) => (
-                        <SkillElement key={skill.name} skill={skill} index={index + 13} onHover={handleInteraction} onTouch={handleInteraction} />
+                        <SkillElement key={skill.name} skill={skill} index={index + 7} onHover={handleInteraction} onTouch={handleInteraction} />
                     ))}
                 </div>
             </div>
 
             {/* Bottom row */}
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-[-4rem]">
                 {bottomSkills.map((skill, index) => (
-                    <SkillElement key={skill.name} skill={skill} index={index + 7} onHover={handleInteraction} onTouch={handleInteraction} />
+                    <SkillElement key={skill.name} skill={skill} index={index + 14} onHover={handleInteraction} onTouch={handleInteraction} />
                 ))}
             </div>
         </div>
