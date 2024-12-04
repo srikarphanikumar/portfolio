@@ -85,6 +85,7 @@ main {
 }
 
 .timeline-items {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -92,10 +93,19 @@ main {
     min-width: 300px;
     height: 100%;
     border-top: 2px solid #3498db;
-    border-right: 2px solid #3498db;
+    /* border-right: 2px solid #3498db; */
     border-bottom: 2px solid #3498db;
     padding: 20px 10px;
     overflow-y: auto;
+}
+
+.timeline-progress {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2px;
+    background-color: #2ecc71;
+    transition: height 0.5s ease;
 }
 
 .timeline-item {
@@ -103,6 +113,13 @@ main {
     cursor: pointer;
     padding-right: 30px;
     margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.timeline-item-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .timeline-point {
@@ -114,25 +131,48 @@ main {
     right: -9px;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-point.active {
+    background-color: #2ecc71;
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2);
 }
 
 .timeline-content {
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #f5f5f5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(52, 152, 219, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.timeline-content.active {
+    background-color: rgba(46, 204, 113, 0.1);
+    border-color: #2ecc71;
 }
 
 .timeline-content h3 {
     margin: 0 0 5px 0;
-    color: #3498db;
     font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.timeline-content.active h3 {
+    color: #2ecc71;
 }
 
 .timeline-content p {
     margin: 0;
     font-size: 0.8em;
     color: #666;
+    transition: color 0.3s ease;
+}
+
+.timeline-content.active p {
+    color: rgba(46, 204, 113, 0.8);
 }
 
 .timeline-details {
@@ -144,7 +184,6 @@ main {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     overflow-y: auto;
-    /* Allow scrolling if content exceeds height */
 }
 
 .experience-details h2 {
@@ -220,6 +259,11 @@ main {
 
     .timeline-point {
         left: -9px;
+        right: auto;
+    }
+
+    .timeline-progress {
+        left: 0;
         right: auto;
     }
 

@@ -59,20 +59,42 @@ const experiences = [
     },
 ];
 
-
-const TimelineItem = ({ experience, isSelected, onClick }) => (
-    <motion.div
-        className={`timeline-item ${isSelected ? 'selected' : ''}`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClick}
-    >
-        <motion.div className="timeline-point" />
-        <motion.div className="timeline-content">
-            <h3>{experience.company}</h3>
-            <p>{experience.period}</p>
+const TimelineItem = ({ experience, isSelected, onClick, index, totalItems }) => (
+    <div className="timeline-item-wrapper overflow-hidden">
+        <motion.div
+            className={`timeline-item ${isSelected ? 'selected' : ''}`}
+            onClick={onClick}
+        >
+            <motion.div
+                className={`timeline-point ${isSelected ? 'active' : ''}`}
+                animate={{
+                    scale: isSelected ? 1.2 : 1,
+                    backgroundColor: isSelected ? '#2ecc71' : '#3498db'
+                }}
+                transition={{ duration: 0.3 }}
+            />
+            <motion.div
+                className={`timeline-content ${isSelected ? 'active' : ''}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                    backgroundColor: isSelected ? 'rgba(46, 204, 113, 0.1)' : 'rgba(52, 152, 219, 0.1)',
+                    borderColor: isSelected ? '#2ecc71' : 'transparent'
+                }}
+                style={{
+                    transformOrigin: 'left center',
+                    width: '100%'
+                }}
+            >
+                <h3 className={isSelected ? 'text-green-400' : 'text-blue-400'}>
+                    {experience.company}
+                </h3>
+                <p className={isSelected ? 'text-green-200' : 'text-gray-400'}>
+                    {experience.period}
+                </p>
+            </motion.div>
         </motion.div>
-    </motion.div>
+    </div>
 );
 
 const ExperienceDetails = ({ experience }) => (
@@ -106,44 +128,70 @@ const ExperienceDetails = ({ experience }) => (
     </div>
 );
 
-
 const CShapeTimeline = () => {
     const [selectedExperience, setSelectedExperience] = useState(experiences[0].id);
+    const [progressHeight, setProgressHeight] = useState(0);
 
     useEffect(() => {
-        // Ensure the timeline is fully visible on load
         const timeline = document.querySelector('.timeline-container');
         if (timeline) {
             timeline.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
     }, []);
 
+    useEffect(() => {
+        // Calculate progress height based on selected experience
+        const selectedIndex = experiences.findIndex(exp => exp.id === selectedExperience);
+        const progress = ((selectedIndex + 1) / experiences.length) * 100;
+        setProgressHeight(progress);
+    }, [selectedExperience]);
+
     return (
-        <div className="c-shape-timeline overflow-hidden">
+        <div className="c-shape-timeline">
             <div className="timeline-container">
                 <div className="timeline-items">
-                    {experiences.map((exp) => (
+                    {/* Progress Bar */}
+                    <motion.div
+                        className="timeline-progress"
+                        animate={{
+                            height: `${progressHeight}%`
+                        }}
+                        transition={{ duration: 0.5 }}
+                    />
+
+                    {experiences.map((exp, index) => (
                         <TimelineItem
                             key={exp.id}
                             experience={exp}
                             isSelected={selectedExperience === exp.id}
                             onClick={() => setSelectedExperience(selectedExperience === exp.id ? null : exp.id)}
+                            index={index}
+                            totalItems={experiences.length}
                         />
                     ))}
                 </div>
-                <AnimatePresence>
-                    {selectedExperience && (
-                        <motion.div
-                            className="timeline-details"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <ExperienceDetails experience={experiences.find(exp => exp.id === selectedExperience)} />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                <motion.div
+                    className="details-container overflow-hidden"
+                    style={{
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}
+                >
+                    <AnimatePresence mode="wait">
+                        {selectedExperience && (
+                            <motion.div
+                                className="timeline-details"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <ExperienceDetails experience={experiences.find(exp => exp.id === selectedExperience)} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
             </div>
         </div>
     );

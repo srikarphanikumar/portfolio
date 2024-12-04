@@ -1,289 +1,394 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaInfoCircle, FaBolt, FaSearch, FaStar, FaCode, FaLightbulb } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
-const menuItems = [
-    { id: 'emojis', title: 'My Life in Emojis', icon: FaInfoCircle },
-    { id: 'superpowers', title: 'My Superpower Wishlist', icon: FaBolt },
-    { id: 'search', title: 'My Search History', icon: FaSearch },
-    { id: 'talents', title: 'Useless Talents Showcase', icon: FaStar },
-];
+const About = () => {
+    const [input, setInput] = useState('');
+    const [history, setHistory] = useState([]);
+    const [commandHistory, setCommandHistory] = useState([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
+    const inputRef = useRef(null);
+    const terminalRef = useRef(null);
 
-const emojiData = [
-    { emoji: '👶', text: 'Wish me \'Happy Birthday\' on: Sep 30' },
-    { emoji: '🎓', text: 'MS - 2018, MBA - 2023' },
-    { emoji: '💻', text: 'Working for the next 10-20 years... help!' },
-    { emoji: '🌍', text: 'India to US' },
-    { emoji: '🍕', text: 'Cuisines tried: \n 🇺🇸 American, 🇲🇽 Mexican, 🇮🇳 Indian (favorite), 🇮🇹 Italian (second fav), 🇹🇭 Thai, 🇯🇵 Japanese, 🇨🇳 Chinese, 🇻🇳 Vietnamese' },
-];
-
-const contentData = {
-    superpowers: [
-        "Time travel (but only to relive embarrassing moments)",
-        "Teleportation (exclusively to places I've forgotten something)",
-        "Mind reading (of pets only)",
-        "Invisible (but only when no one is looking)",
-        "Flying (limited to 3 feet off the ground)",
-    ],
-    search: [
-        {
-            type: 'witty',
-            searches: [
-                "how to look busy while doing nothing",
-                "is it normal to talk to houseplants",
-                "why does my code work when I don't touch it",
-                "how many pizzas is too many pizzas",
-                "can cats see ghosts",
-                "how to convince my dog I'm the alpha" // New search item
-            ]
-        },
-        {
-            type: 'tech',
-            searches: [
-                "latest Angular version",
-                "React vs Vue in 2024",
-                "how to center a div",
-                "best practices for API security",
-                "machine learning for beginners",
-                "debugging quantum computers 101" // New search item
-            ]
-        },
-        {
-            type: 'random',
-            searches: [
-                "why is the sky blue",
-                "how to time travel",
-                "best dad jokes 2024",
-                "do fish get thirsty",
-                "how to become a superhero",
-                "what if plants had feelings" // New search item
-            ]
+    const helpContent = {
+        type: 'success',
+        content: {
+            heading: 'Available Commands',
+            content: [
+                { cmd: 'help', desc: 'Show this help message' },
+                { cmd: 'about', desc: 'Learn about me' },
+                { cmd: 'skills', desc: 'View technical skills' },
+                { cmd: 'projects', desc: 'See major projects' },
+                { cmd: 'contact', desc: 'Get contact info' },
+                { cmd: 'clear', desc: 'Clear terminal' },
+                { cmd: 'coffee', desc: 'Get caffeinated ☕️' },
+                { cmd: 'weather', desc: 'Check my mood' },
+                { cmd: 'cat', desc: 'Meet ASCII cat' },
+                { cmd: 'sudo', desc: 'Try your luck 😉' }
+            ],
+            footer: 'Tip: Use Tab for autocompletion and arrow keys for command history!'
         }
-    ],
-    talents: [
-        "Ability to find the end of tape rolls in record time",
-        "Expert at guessing the exact amount of leftover food that fits in a container",
-        "Can name all Pokemon from memory (but only the original 151)",
-        "Uncanny talent for selecting the slowest checkout line",
-        "Professional bubble wrap popper",
-    ],
-};
+    };
 
-const EmojiItem = ({ emoji, text, index }) => {
-    const isEven = index % 2 === 0;
+    const commands = {
+        help: {
+            description: 'List all available commands',
+            execute: () => ({
+                output: {
+                    heading: 'Available Commands',
+                    content: [
+                        { cmd: 'help', desc: 'Show this help message' },
+                        { cmd: 'about', desc: 'Learn about me' },
+                        { cmd: 'skills', desc: 'View technical skills' },
+                        { cmd: 'projects', desc: 'See major projects' },
+                        { cmd: 'contact', desc: 'Get contact info' },
+                        { cmd: 'clear', desc: 'Clear terminal' },
+                        { cmd: 'coffee', desc: 'Get caffeinated ☕️' },
+                        { cmd: 'weather', desc: 'Check my mood' },
+                        { cmd: 'cat', desc: 'Meet ASCII cat' },
+                        { cmd: 'sudo', desc: 'Try your luck 😉' }
+                    ],
+                    footer: 'Tip: Use Tab for autocompletion and arrow keys for command history!'
+                },
+                type: 'success'
+            })
+        },
+        about: {
+            description: 'Learn about me',
+            execute: () => ({
+                output: {
+                    heading: 'About Me',
+                    content: [
+                        { label: 'Name', value: 'Srikar Phani Kumar Marti' },
+                        { label: 'Role', value: 'Full Stack Developer' },
+                        { label: 'Education', value: 'MS Computer Science, MBA' },
+                        { label: 'Location', value: 'US (Originally India)' },
+                        { label: 'Passion', value: 'Creating elegant apps' }
+                    ],
+                    footer: "Type 'about --detailed' for more info"
+                },
+                type: 'success'
+            })
+        },
+        skills: {
+            description: 'View technical skills',
+            execute: () => ({
+                output: {
+                    heading: 'Technical Skills',
+                    content: [
+                        { category: 'Frontend', skills: ['React.js', 'Next.js', 'TypeScript', 'Tailwind'] },
+                        { category: 'Backend', skills: ['Node.js', 'Python', 'Java'] },
+                        { category: 'Database', skills: ['MongoDB', 'PostgreSQL'] },
+                        { category: 'Other', skills: ['Git', 'Docker', 'AWS', 'REST APIs'] }
+                    ],
+                    footer: "Type 'skills --level' for expertise"
+                },
+                type: 'success'
+            })
+        },
+        projects: {
+            description: 'See major projects',
+            execute: () => ({
+                output: {
+                    heading: 'Featured Projects',
+                    content: [
+                        {
+                            project: 'Project Alpha',
+                            details: ['Full-stack e-commerce platform', 'React, Node.js, MongoDB']
+                        },
+                        {
+                            project: 'Project Beta',
+                            details: ['Real-time collaboration tool', 'Next.js, WebSocket, PostgreSQL']
+                        }
+                    ],
+                    footer: "Type 'projects --detailed' for more info"
+                },
+                type: 'success'
+            })
+        },
+        contact: {
+            description: 'Get contact information',
+            execute: () => ({
+                output: {
+                    heading: 'Contact Info',
+                    content: [
+                        { label: 'Email', value: 'srikar.vamsi@gmail.com' },
+                        { label: 'LinkedIn', value: 'linkedin.com/in/mspkumar' },
+                        { label: 'GitHub', value: 'github.com/srikarphanikumar' },
+                        { label: 'Website', value: 'mspke.me' }
+                    ]
+                },
+                type: 'success'
+            })
+        },
+        weather: {
+            description: 'Check mood weather',
+            execute: () => ({
+                output: {
+                    heading: 'Mood Forecast',
+                    content: [
+                        { label: 'Temperature', value: 'Hot for coding 🔥' },
+                        { label: 'Condition', value: 'Raining ideas 🌧' },
+                        { label: 'Wind', value: 'Blowing away bugs 🌪' },
+                        { label: 'Visibility', value: 'Clear vision ✨' }
+                    ]
+                },
+                type: 'success'
+            })
+        },
+        coffee: {
+            description: 'Get coffee',
+            execute: () => ({
+                output: {
+                    heading: 'Coffee Break',
+                    content: [
+                        { value: '☕️ Brewing your coffee...' },
+                        { value: '[====================] 100%' },
+                        { value: 'Energy +100! Ready to code! ⚡️' }
+                    ]
+                },
+                type: 'success'
+            })
+        },
+        cat: {
+            description: 'Show ASCII cat',
+            execute: () => ({
+                output: {
+                    heading: 'Debug Cat',
+                    content: [
+                        { value: '/\\___/\\' },
+                        { value: '(  o o  )' },
+                        { value: '(  =^=  )' },
+                        { value: ' (--m--)' },
+                        { value: 'Meow! Need help? 🐱' }
+                    ]
+                },
+                type: 'success'
+            })
+        },
+        clear: {
+            description: 'Clear the terminal',
+            execute: () => {
+                setHistory([
+                    {
+                        type: 'success',
+                        content: {
+                            heading: 'Welcome',
+                            content: [{ value: "Welcome to my interactive terminal! 👋 Type 'help' to see available commands." }]
+                        }
+                    },
+                    helpContent
+                ]);
+                return { output: '', type: 'clear' };
+            }
+        },
+        sudo: {
+            description: 'Try to get admin access',
+            execute: () => ({
+                output: {
+                    heading: 'Access Denied',
+                    content: [
+                        { value: 'Nice try! But no sudo here! 😄' },
+                        { value: 'Permission denied (too awesome)' }
+                    ]
+                },
+                type: 'error'
+            })
+        }
+    };
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className={`flex items-center w-full mb-8 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
-        >
-            <div className="flex-shrink-0">
-                <span className="text-8xl">{emoji}</span>
+    const getAutoComplete = (partial) => {
+        if (!partial) return '';
+        const matches = Object.keys(commands).filter(cmd => cmd.startsWith(partial));
+        return matches.length === 1 ? matches[0] : '';
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const completion = getAutoComplete(input);
+            if (completion) setInput(completion);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (historyIndex < commandHistory.length - 1) {
+                const newIndex = historyIndex + 1;
+                setHistoryIndex(newIndex);
+                setInput(commandHistory[commandHistory.length - 1 - newIndex]);
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex > 0) {
+                const newIndex = historyIndex - 1;
+                setHistoryIndex(newIndex);
+                setInput(commandHistory[commandHistory.length - 1 - newIndex]);
+            } else {
+                setHistoryIndex(-1);
+                setInput('');
+            }
+        }
+    };
+
+    const executeCommand = (cmd) => {
+        const [command, ...args] = cmd.trim().split(' ');
+        const commandObj = commands[command];
+
+        if (commandObj) {
+            return commandObj.execute(args);
+        } else {
+            return {
+                output: `Command not found: ${command}. Type 'help' for available commands.`,
+                type: 'error'
+            };
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!input.trim()) return;
+
+        const result = executeCommand(input);
+
+        if (result.type !== 'clear') {
+            setHistory(prev => [...prev,
+            { type: 'input', content: input },
+            { type: result.type, content: result.output }
+            ]);
+        }
+
+        setCommandHistory(prev => [...prev, input]);
+        setInput('');
+        setHistoryIndex(-1);
+    };
+
+    const renderCommandOutput = (entry) => {
+        if (entry.type === 'input') {
+            return (
+                <div className="flex">
+                    <span className="text-[#A6E3A1]">➜</span>
+                    <span className="text-[#89B4FA] mx-2">~</span>
+                    <span>{entry.content}</span>
+                </div>
+            );
+        }
+
+        if (typeof entry.content === 'string') {
+            return <div className={entry.type === 'error' ? 'text-[#F38BA8]' : 'text-[#CDD6F4]'}>{entry.content}</div>;
+        }
+
+        const output = entry.content;
+        return (
+            <div className="my-2">
+                <div className="border border-dashed border-white/20">
+                    {output.heading && (
+                        <div className="border-b border-dashed border-white/40 px-4 py-2">
+                            {output.heading}
+                        </div>
+                    )}
+                    <div className="px-4 py-2 space-y-1">
+                        {output.content.map((item, index) => {
+                            if (item.cmd) {
+                                return (
+                                    <div key={index} className="flex">
+                                        <span className="w-20">{item.cmd}</span>
+                                        <span className="text-white/60 mx-2">| |</span>
+                                        <span>{item.desc}</span>
+                                    </div>
+                                );
+                            }
+                            if (item.category) {
+                                return (
+                                    <div key={index} className="flex">
+                                        <span className="w-20">{item.category}</span>
+                                        <span className="text-white/60 mx-2">| |</span>
+                                        <span>{item.skills.join(', ')}</span>
+                                    </div>
+                                );
+                            }
+                            if (item.project) {
+                                return (
+                                    <div key={index} className="space-y-1">
+                                        <div className="flex">
+                                            <span className="w-20">{item.project}</span>
+                                            <span className="text-white/60 mx-2">| |</span>
+                                            <span>{item.details.join(' | ')}</span>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                            if (item.label) {
+                                return (
+                                    <div key={index} className="flex">
+                                        <span className="w-20">{item.label}</span>
+                                        <span className="text-white/60 mx-2">| |</span>
+                                        <span>{item.value}</span>
+                                    </div>
+                                );
+                            }
+                            return (
+                                <div key={index} className="flex">
+                                    <span>{item.value}</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    {output.footer && (
+                        <div className="border-t border-dashed border-white/40 px-4 py-2 text-sm text-white/60">
+                            {output.footer}
+                        </div>
+                    )}
+                </div>
             </div>
-            <motion.div
-                className={`relative mx-8 p-6 bg-white text-gray-800 rounded-3xl ${isEven ? 'ml-12' : 'mr-12'}`}
-                style={{
-                    clipPath: isEven
-                        ? 'polygon(0% 0%, 100% 0%, 100% 100%, 20px 100%, 0% 50%, 20px 0%)'
-                        : 'polygon(0% 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 0% 100%, 0% 0%)',
-                }}
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-            >
-                <p className="text-lg font-semibold">{text}</p>
-            </motion.div>
-        </motion.div>
-    );
-};
-const funFacts = [
-    "The average person spends 6 months of their life waiting for red lights to turn green!",
-    "A programmer's 'Ctrl+S' reflex works even while using non-computer devices!",
-    "The first computer bug was an actual real-life bug - a moth trapped in a Harvard Mark II.",
-    "The word 'nerd' was first coined by Dr. Seuss in 'If I Ran the Zoo' in 1950.",
-    "The term 'debugging' originated from removing an actual moth from a computer.",
-    "The first webcam was created to check the status of a coffee pot at Cambridge University."
-];
-
-const SearchBox = ({ type, searches }) => {
-    const [placeholder, setPlaceholder] = useState('');
-    const [funFact, setFunFact] = useState('');
-    const placeholderRef = useRef(null);
-
-    const getPlaceholder = () => {
-        switch (type) {
-            case 'witty': return 'How to adult...';
-            case 'tech': return 'Debug my life...';
-            case 'random': return 'Why is reality...';
-            default: return 'Search here...';
-        }
+        );
     };
 
     useEffect(() => {
-        setPlaceholder(getPlaceholder());
-        // Select a random fun fact, different for each card
-        setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
-    }, [type]);
-
-    return (
-        <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden relative">
-            <div className="bg-gray-100 w-full p-4 flex items-center">
-                <FaSearch className="text-gray-600 mr-2 text-xl" />
-                <div className="relative flex-grow">
-                    <span ref={placeholderRef} className="text-gray-400">{placeholder}</span>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ repeat: Infinity, duration: 0.8 }}
-                        className="absolute top-0 w-0.5 h-full bg-gray-600"
-                        style={{
-                            left: placeholderRef.current
-                                ? `${placeholderRef.current.getBoundingClientRect().width}px`
-                                : '0px'
-                        }}
-                    />
-                </div>
-            </div>
-            <ul className="py-4 w-full mb-16">
-                {searches.map((item, index) => (
-                    <motion.li
-                        key={index}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="px-6 py-4 hover:bg-gray-100 cursor-pointer text-gray-800 text-lg border-b border-gray-200 last:border-b-0 relative z-10"
-                    >
-                        {item}
-                    </motion.li>
-                ))}
-            </ul>
-            <div className="absolute inset-0 flex items-center justify-center opacity-5 text-9xl pointer-events-none">
-                <FaCode />
-            </div>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="absolute bottom-0 left-0 right-0 bg-gray-100 p-4 text-center text-gray-600"
-            >
-                <FaLightbulb className="inline-block mr-2" />
-                <span>{funFact}</span>
-            </motion.div>
-        </div>
-    );
-};
-
-const About = () => {
-    const [activeSection, setActiveSection] = useState(menuItems[0].id);
-    const [hoveredItem, setHoveredItem] = useState(null);
-
-    const renderContent = () => {
-        switch (activeSection) {
-            case 'emojis':
-                return (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col items-start justify-start w-full"
-                    >
-                        {emojiData.map((item, index) => (
-                            <EmojiItem key={index} emoji={item.emoji} text={item.text} index={index} />
-                        ))}
-                    </motion.div>
-                );
-            case 'superpowers':
-            case 'talents':
-                return (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-full grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                        {contentData[activeSection].map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className={`py-6 px-16 rounded-lg shadow-lg flex flex-col items-center justify-center text-center h-full ${activeSection === 'superpowers'
-                                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500'
-                                    : 'bg-gradient-to-r from-green-400 to-blue-500'
-                                    }`}
-                            >
-                                {activeSection === 'superpowers' ? (
-                                    <FaBolt className="text-yellow-300 text-4xl mb-4" />
-                                ) : (
-                                    <FaStar className="text-yellow-300 text-4xl mb-4" />
-                                )}
-                                <p className="text-lg">{item}</p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                );
-            case 'search':
-                return (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16"
-                    >
-                        {contentData.search.map((searchData, index) => (
-                            <SearchBox key={index} type={searchData.type} searches={searchData.searches} />
-                        ))}
-                    </motion.div>
-                );
-            default:
-                return null;
+        if (terminalRef.current) {
+            terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
         }
-    };
+    }, [history]);
+
+    useEffect(() => {
+        setHistory([{
+            type: 'success',
+            content: {
+                heading: 'Welcome',
+                content: [{ value: "Welcome to my interactive terminal! 👋 Type 'help' to see available commands." }]
+            }
+        }]);
+    }, []);
 
     return (
-        <div className="flex h-screen bg-gray-900 text-white">
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex-grow p-4 md:p-8 overflow-auto"
+        <div className="bg-[#1E1E2E] p-4 rounded-lg shadow-2xl w-full max-w-4xl mx-auto h-[80vh] flex flex-col">
+            <div className="flex items-center mb-4 bg-[#181825] p-2 rounded-t-lg">
+                <div className="w-3 h-3 rounded-full bg-[#F38BA8] mr-2"></div>
+                <div className="w-3 h-3 rounded-full bg-[#FAB387] mr-2"></div>
+                <div className="w-3 h-3 rounded-full bg-[#A6E3A1]"></div>
+            </div>
+
+            <div
+                ref={terminalRef}
+                className="flex-1 overflow-auto font-mono text-sm text-[#CDD6F4] mb-4 p-2 bg-[#181825] rounded-lg"
             >
-                {renderContent()}
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                className="w-16 md:w-20 bg-gray-900 shadow-lg p-4 md:p-6 flex flex-col items-center justify-center"
-            >
-                {menuItems.map((item) => (
-                    <motion.button
-                        key={item.id}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        onMouseEnter={() => setHoveredItem(item.id)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        onClick={() => setActiveSection(item.id)}
-                        className={`relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 mb-6 rounded-full ${activeSection === item.id ? 'bg-blue-500' : 'bg-gray-700'
-                            }`}
-                    >
-                        <item.icon className="text-lg md:text-xl" />
-                        <AnimatePresence>
-                            {hoveredItem === item.id && (
-                                <motion.span
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: -5 }}
-                                    exit={{ opacity: 0, x: -10 }}
-                                    className="absolute right-full mr-2 whitespace-nowrap bg-gray-700 px-2 py-1 rounded text-xs"
-                                >
-                                    {item.title}
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
-                    </motion.button>
+                {history.map((entry, index) => (
+                    <div key={index} className="mb-2">
+                        {renderCommandOutput(entry)}
+                    </div>
                 ))}
-            </motion.div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="flex items-center bg-[#181825] p-2 rounded-lg">
+                <span className="text-[#A6E3A1]">➜</span>
+                <span className="text-[#89B4FA] mx-2">~</span>
+                <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="flex-1 bg-transparent outline-none text-[#CDD6F4] font-mono"
+                    autoFocus
+                />
+            </form>
         </div>
     );
 };
