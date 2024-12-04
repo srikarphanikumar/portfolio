@@ -215,7 +215,7 @@ const TechJokesNewspaper = () => {
                                                 className="overflow-hidden"
                                             >
                                                 <p className="text-[#657b83] italic">
-                                                    "{joke.punchline}"
+                                                    &quot;{joke.punchline}&quot;
                                                 </p>
                                             </motion.div>
                                         )}
