@@ -129,7 +129,7 @@ const emojis = ['😂', '🤣', '😆', '😹', '🤓', '👨‍💻', '💻', '
 const TechJokesNewspaper = () => {
     const [expandedJoke, setExpandedJoke] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
-    const rolesPerPage = 3;
+    const rolesPerPage = 2;
 
     const currentDate = new Date().toLocaleDateString('en-US', {
         weekday: 'long',
@@ -148,13 +148,13 @@ const TechJokesNewspaper = () => {
     return (
         <div className="min-h-screen bg-[#fdf6e3] p-1 md:p-8"> {/* Solarized Light background */}
             {/* Newspaper Header */}
-            <div className="bg-[#eee8d5] border-b-2 border-[#073642] mb-4 p-6 shadow-lg"> {/* Solarized Light Secondary */}
+            <div className="bg-[#eee8d5] border-b-2 border-[#073642] mb-4 p-4 shadow-lg"> {/* Solarized Light Secondary */}
                 <div className="text-center border-b-2 border-[#073642] pb-4">
-                    <h1 className="font-serif text-5xl md:text-4xl font-bold mb-2 text-[#073642]">Tech Jokes Daily</h1>
-                    <div className="flex items-center justify-center gap-2 text-[#657b83]">
+                    <h1 className="font-serif text-5xl md:text-4xl font-bold mb-1 text-[#073642]">Tech Jokes Daily</h1>
+                    {/* <div className="flex items-center justify-center gap-2 text-[#657b83]">
                         <FaNewspaper />
                         <span className="text-sm">The Most Reliable Source of Tech Humor</span>
-                    </div>
+                    </div> */}
                     <div className="flex items-center justify-center gap-2 mt-1 text-[#657b83]">
                         <FaCalendarAlt />
                         <span className="text-sm">{currentDate}</span>
@@ -190,7 +190,7 @@ const TechJokesNewspaper = () => {
             </div>
 
             {/* Newspaper Content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
                 {currentRoles.map((role, roleIndex) => (
                     <div key={role} className="bg-[#eee8d5] p-4 border border-[#93a1a1] shadow-lg">
                         <h2 className="font-serif text-md font-bold border-b-2 border-[#073642] mb-4 pb-2 text-[#073642]">

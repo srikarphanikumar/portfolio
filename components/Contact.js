@@ -58,7 +58,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="h-screen overflow-hidden -mt-6">
+        <section id="contact" className="h-screen overflow-hidden -mt-20">
             <div className="grid grid-cols-1 md:grid-cols-2 h-full">
                 <TechJokesNewspaper />
                 <div className="relative bg-gray-800 p-8 flex items-center overflow-hidden">

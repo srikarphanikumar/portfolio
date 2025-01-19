@@ -12,6 +12,9 @@ module.exports = {
                 'cursive': ['Brush Script MT', 'cursive'],
                 'space-mono': ['"Space Mono"', 'monospace'],
             },
+            clipPath: {
+                'polygon': 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+            }
         },
     },
     plugins: [],

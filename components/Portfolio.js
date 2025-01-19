@@ -295,7 +295,7 @@ const Portfolio = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-900 py-12 px-4">
+        <div className="min-h-screen bg-gray-900 py-10 px-4 -mt-16">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {sections.map((section, index) => (
@@ -307,8 +307,7 @@ const Portfolio = () => {
                         />
                     ))}
                 </div>
-
-                <div className="mt-12 text-center">
+                <div className="mt-6 text-center">
                     <a
                         href="/Srikar-Phani-Kumar-M.pdf"
                         download
@@ -324,6 +323,7 @@ const Portfolio = () => {
                         Download Resume
                     </a>
                 </div>
+
             </div>
         </div>
     );
