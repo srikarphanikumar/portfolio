@@ -1,8 +1,14 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaAngular, FaJenkins, FaAccessibleIcon, FaAws, FaDocker } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiBootstrap, SiSass, SiMysql, SiTypescript, SiGit, SiRedux, SiFirebase, SiMongodb } from 'react-icons/si';
+import {
+    FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaAngular,
+    FaAws, FaDocker, FaJenkins, FaAccessibleIcon,
+} from 'react-icons/fa';
+import {
+    SiTailwindcss, SiNextdotjs, SiTypescript, SiGit, SiMongodb,
+    SiBootstrap, SiSass, SiMysql, SiRedux, SiFirebase
+} from 'react-icons/si';
 import { MdOutlineDesignServices } from 'react-icons/md';
 import { TbBrandReactNative } from 'react-icons/tb';
 
@@ -31,94 +37,49 @@ const skills = [
     { name: 'MongoDB', icon: SiMongodb, category: 'Database', color: '#47A248', proficiency: 78 },
 ];
 
-const SkillElement = ({ skill, index, onHover, onTouch }) => {
-    if (!skill) return null;
-    return (
-        <motion.div
-            className="w-20 h-20 m-1 rounded-lg flex flex-col items-center justify-center cursor-pointer"
-            style={{ backgroundColor: skill.color + '33' }}
-            whileHover={{ scale: 1.1, backgroundColor: skill.color }}
-            onHoverStart={() => onHover(skill)}
-            onHoverEnd={() => onHover(null)}
-            onTouchStart={() => onTouch(skill)}
-            onTouchEnd={() => onTouch(null)}
-        >
-            {skill.icon && <skill.icon className="text-2xl mb-1" style={{ color: skill.color }} />}
-            <div className="text-xs font-bold text-center">{skill.name}</div>
-        </motion.div>
-    );
-};
-
-const Skills = () => {
-    const [hoveredSkill, setHoveredSkill] = useState(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    const handleInteraction = (skill) => {
-        if (isMobile) {
-            setHoveredSkill(prevSkill => prevSkill === skill ? null : skill);
-        } else {
-            setHoveredSkill(skill);
-        }
-    };
-
-    const leftSkills = skills.slice(0, 7);
-    const rightSkills = skills.slice(7, 14);
-    const bottomSkills = skills.slice(14);
+const SkillPath = () => {
+    const radius = 300; // Radius of the circular path
 
     return (
-        <div className="w-full h-full flex flex-col justify-between p-2 mt-[-1]">
-            <div className="flex-1 flex justify-between">
-                {/* Left column */}
-                <div className="w-1/4 flex flex-col justify-between items-end">
-                    {leftSkills.map((skill, index) => (
-                        <SkillElement key={skill.name} skill={skill} index={index} onHover={handleInteraction} onTouch={handleInteraction} />
-                    ))}
-                </div>
+        <div className="relative w-full h-screen bg-gradient-to-br from-gray-900 to-black overflow-hidden flex items-center justify-center -mt-20">
+            {/* <h1 className="absolute top-10 text-white text-4xl font-bold">My Skills</h1> */}
+            <motion.div
+                className="relative w-[800px] h-[800px]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                {skills.map((skill, index) => {
+                    // Distribute skills along the circle
+                    const angle = (index / skills.length) * Math.PI * 2;
+                    const x = Math.cos(angle) * radius + 400; // Centered at (400, 400)
+                    const y = Math.sin(angle) * radius + 400;
 
-                {/* Center area */}
-                <div className="w-1/2 flex items-center justify-center px-4">
-                    {hoveredSkill && (
+                    return (
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="w-full h-64 rounded-lg p-4 flex flex-col items-center justify-center"
-                            style={{ backgroundColor: hoveredSkill.color }}
+                            key={skill.name}
+                            className="absolute flex flex-col items-center"
+                            style={{ left: `${x}px`, top: `${y}px` }}
+                            whileHover={{ scale: 1.2 }}
                         >
-                            {hoveredSkill.icon && <hoveredSkill.icon className="text-6xl mb-4 text-white" />}
-                            <h3 className="text-2xl font-bold mb-2 text-white">{hoveredSkill.name}</h3>
-                            <p className="text-lg mb-2 text-white">Category: {hoveredSkill.category}</p>
-                            <p className="text-lg text-white">Proficiency: {hoveredSkill.proficiency}%</p>
+                            <skill.icon
+                                className="text-4xl mb-2"
+                                style={{ color: skill.color }}
+                            />
+                            <motion.span
+                                className="text-sm text-white font-semibold"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                whileHover={{ opacity: 1 }}
+                            >
+                                {skill.name}
+                            </motion.span>
                         </motion.div>
-                    )}
-                </div>
-
-                {/* Right column */}
-                <div className="w-1/4 flex flex-col justify-between items-start">
-                    {rightSkills.map((skill, index) => (
-                        <SkillElement key={skill.name} skill={skill} index={index + 7} onHover={handleInteraction} onTouch={handleInteraction} />
-                    ))}
-                </div>
-            </div>
-
-            {/* Bottom row */}
-            <div className="flex justify-center mt-[-4rem]">
-                {bottomSkills.map((skill, index) => (
-                    <SkillElement key={skill.name} skill={skill} index={index + 14} onHover={handleInteraction} onTouch={handleInteraction} />
-                ))}
-            </div>
+                    );
+                })}
+            </motion.div>
         </div>
     );
 };
 
-export default Skills;
+export default SkillPath;
