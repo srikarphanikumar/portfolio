@@ -25,8 +25,8 @@ const PaperAirplaneAnimation = () => (
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
+        to_name: '',
+        from_name: '',
         message: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,7 +45,7 @@ const Contact = () => {
         try {
             await emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, USER_ID);
             setSubmitStatus('success');
-            setFormData({ name: '', email: '', message: '' });
+            setFormData({ to_name: '', from_name: '', message: '' });
         } catch (error) {
             console.error('Error sending email:', error);
             setSubmitStatus('error');
@@ -142,8 +142,8 @@ const Contact = () => {
                                 <input
                                     type="text"
                                     id="name"
-                                    name="name"
-                                    value={formData.name}
+                                    name="to_name"
+                                    value={formData.to_name}
                                     onChange={handleChange}
                                     className="w-full p-3 border border-gray-700 rounded-md bg-[#2a2a2a] text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                     required
@@ -157,8 +157,8 @@ const Contact = () => {
                                 <input
                                     type="email"
                                     id="email"
-                                    name="email"
-                                    value={formData.email}
+                                    name="from_name"
+                                    value={formData.from_name}
                                     onChange={handleChange}
                                     className="w-full p-3 border border-gray-700 rounded-md bg-[#2a2a2a] text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                     required
