@@ -60,8 +60,8 @@ const About = () => {
                     heading: 'About Me',
                     content: [
                         { label: 'Name', value: 'Srikar Phani Kumar Marti' },
-                        { label: 'Role', value: 'Full Stack Developer' },
-                        { label: 'Education', value: 'MS Computer Science, MBA' },
+                        { label: 'Role', value: 'Frontend Developer' },
+                        { label: 'Education', value: 'MS, MBA' },
                         { label: 'Location', value: 'US (Originally India)' },
                         { label: 'Passion', value: 'Creating elegant apps' }
                     ],
@@ -76,9 +76,9 @@ const About = () => {
                 output: {
                     heading: 'Technical Skills',
                     content: [
-                        { category: 'Frontend', skills: ['React.js', 'Next.js', 'TypeScript', 'Tailwind'] },
+                        { category: 'Frontend', skills: ['Angular', 'React.js', 'Next.js', 'TypeScript', 'Tailwind'] },
                         { category: 'Backend', skills: ['Node.js', 'Python', 'Java'] },
-                        { category: 'Database', skills: ['MongoDB', 'PostgreSQL'] },
+                        { category: 'Database', skills: ['MongoDB', 'SQL'] },
                         { category: 'Other', skills: ['Git', 'Docker', 'AWS', 'REST APIs'] }
                     ],
                     footer: "Type 'skills --level' for expertise"
@@ -93,12 +93,24 @@ const About = () => {
                     heading: 'Featured Projects',
                     content: [
                         {
-                            project: 'Project Alpha',
-                            details: ['Full-stack e-commerce platform', 'React, Node.js, MongoDB']
+                            project: 'typescript-utilitys',
+                            details: ['NPM Package for TypeScript Utilities']
                         },
                         {
-                            project: 'Project Beta',
-                            details: ['Real-time collaboration tool', 'Next.js, WebSocket, PostgreSQL']
+                            project: 'scss-utilitys',
+                            details: ['NPM Package for SASS Utilities']
+                        },
+                        {
+                            project: '@parsekit',
+                            details: ['NPM Package for Converting String type Boolean values to actual Boolean']
+                        },
+                        {
+                            project: '@poly-kit',
+                            details: ['A single NPM number utils package for Angular/React/JS/TS']
+                        },
+                        {
+                            project: 'zapid',
+                            details: ['A Zero Dependency Random ID Generator']
                         }
                     ],
                     footer: "Type 'projects --detailed' for more info"
@@ -308,7 +320,7 @@ const About = () => {
                                 return (
                                     <div key={index} className="space-y-1">
                                         <div className="flex">
-                                            <span className="w-20">{item.project}</span>
+                                            <span className="w-40">{item.project}</span>
                                             <span className="text-white/60 mx-2">| |</span>
                                             <span>{item.details.join(' | ')}</span>
                                         </div>
@@ -358,8 +370,8 @@ const About = () => {
     }, []);
 
     return (
-        <div className="bg-[#1E1E2E] p-4 rounded-lg shadow-2xl w-full max-w-4xl mx-auto h-[80vh] flex flex-col">
-            <div className="flex items-center mb-4 bg-[#181825] p-2 rounded-t-lg">
+        <div className="bg-[#fdf6e3] p-4 rounded-lg shadow-2xl w-full max-w-4xl mx-auto h-[80vh] flex flex-col">
+            <div className="flex items-center mb-4 bg-[#181825] p-2 rounded-lg">
                 <div className="w-3 h-3 rounded-full bg-[#F38BA8] mr-2"></div>
                 <div className="w-3 h-3 rounded-full bg-[#FAB387] mr-2"></div>
                 <div className="w-3 h-3 rounded-full bg-[#A6E3A1]"></div>
