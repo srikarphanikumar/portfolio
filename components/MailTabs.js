@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Inbox, Briefcase, Code, Star, Phone } from 'lucide-react';
+import { Star, Briefcase, Code, Phone } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const MailTabs = ({ activeTab, onTabChange }) => {
@@ -34,27 +34,29 @@ export const MailTabs = ({ activeTab, onTabChange }) => {
     ];
 
     return (
-        <div className={`flex border-b ${currentTheme.border} overflow-x-auto`}>
+        <div className={`flex border-b ${currentTheme.border} overflow-x-auto ${currentTheme.bg}`}>
             {tabs.map((tab) => (
                 <button
                     key={tab.id}
                     onClick={() => onTabChange(tab.id)}
-                    className={`flex items-center space-x-2 px-6 py-4 border-b-2 transition-colors whitespace-nowrap
+                    className={`
+            flex items-center px-6 py-4 border-b-2 transition-colors relative
             ${activeTab === tab.id
-                            ? `border-blue-500 text-blue-500`
-                            : `border-transparent ${currentTheme.text} hover:bg-gray-100`
-                        }`}
+                            ? `border-blue-500 text-blue-500 ${currentTheme.activeHover}`
+                            : `border-transparent ${currentTheme.text} ${currentTheme.hover}`
+                        }
+          `}
                 >
                     <div className="flex items-center space-x-2">
                         {tab.icon}
                         <span>{tab.label}</span>
+                        {tab.count && (
+                            <span className={`ml-2 text-sm ${activeTab === tab.id ? 'text-blue-500' : currentTheme.secondaryText
+                                }`}>
+                                {tab.count}
+                            </span>
+                        )}
                     </div>
-                    {tab.count && (
-                        <span className={`ml-2 text-sm ${activeTab === tab.id ? 'text-blue-500' : 'text-gray-500'
-                            }`}>
-                            {tab.count}
-                        </span>
-                    )}
                 </button>
             ))}
         </div>
