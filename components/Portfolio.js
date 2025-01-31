@@ -309,7 +309,7 @@ const Portfolio = () => {
                 </div>
                 <div className="mt-6 text-center">
                     <a
-                        href="/Srikar-Phani-Kumar-M.pdf"
+                        href="/Srikar-Phani-Kumar-M-Resume.pdf"
                         download
                         className="
               inline-flex items-center px-6 py-3 

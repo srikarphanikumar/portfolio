@@ -1,7 +1,9 @@
-import Hero from '../components/Hero';
+import ThemeSelector from '../components/ThemeSelector';
 
 export default function Home() {
     return (
-        <Hero />
+        <main>
+            <ThemeSelector />
+        </main>
     );
 }
