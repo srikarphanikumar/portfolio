@@ -1,40 +1,80 @@
 'use client';
 import React from 'react';
-import { Mail, User, Code, Briefcase, FolderOpen, Phone } from 'lucide-react';
+import { Mail, User, Code, Briefcase, FolderOpen, Phone, Star } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
-export const Sidebar = () => {
+const iconMap = {
+    Mail: Mail,
+    User: User,
+    Code: Code,
+    Briefcase: Briefcase,
+    FolderOpen: FolderOpen,
+    Phone: Phone,
+    Star: Star
+};
+
+export const Sidebar = ({ items, activeItem, onItemClick, isExpanded }) => {
     const { currentTheme } = useTheme();
 
-    const menuItems = [
-        { icon: <Mail className="w-5 h-5" />, label: 'Home', count: 6 },
-        { icon: <User className="w-5 h-5" />, label: 'About', count: 2 },
-        { icon: <Code className="w-5 h-5" />, label: 'Skills', count: 8 },
-        { icon: <Briefcase className="w-5 h-5" />, label: 'Experience', count: 4 },
-        { icon: <FolderOpen className="w-5 h-5" />, label: 'Projects', count: 5 },
-        { icon: <Phone className="w-5 h-5" />, label: 'Contact' }
-    ];
-
     return (
-        <div className={`w-64 ${currentTheme.sidebar} h-full p-4`}>
-            <div className="space-y-1">
-                {menuItems.map((item, index) => (
-                    <div
-                        key={index}
-                        className={`
-              flex items-center space-x-3 p-2 rounded-lg cursor-pointer
-              ${currentTheme.hover} transition-colors duration-150
+        <div
+            className={`
+                h-full ${currentTheme.sidebar}
+                transition-all duration-200 ease-in-out
+                ${isExpanded ? 'w-64' : 'w-16'}
+                flex flex-col shadow-lg
+                border-r ${currentTheme.border}
             `}
-                    >
-                        <span className={currentTheme.text}>{item.icon}</span>
-                        <span className={`flex-1 ${currentTheme.text}`}>{item.label}</span>
-                        {item.count && (
-                            <span className={`text-sm ${currentTheme.secondaryText}`}>
-                                {item.count}
-                            </span>
-                        )}
-                    </div>
-                ))}
+        >
+            <div className="p-2 flex-1">
+                {items.map((item) => {
+                    const IconComponent = iconMap[item.icon];
+                    const isActive = activeItem === item.id;
+
+                    return (
+                        <div
+                            key={item.id}
+                            onClick={() => onItemClick(item.id)}
+                            className={`
+                                flex items-center
+                                ${isExpanded ? 'px-4' : 'justify-center'} 
+                                py-2 my-1
+                                rounded-lg cursor-pointer
+                                transition-all duration-150 ease-in-out
+                                ${isActive ? currentTheme.active : currentTheme.hover}
+                            `}
+                        >
+                            {IconComponent && (
+                                <IconComponent
+                                    className={`
+                                        w-5 h-5 min-w-[20px]
+                                        ${!isExpanded && 'mx-auto'}
+                                        transition-colors
+                                        ${isActive ? currentTheme.text : currentTheme.text}
+                                    `}
+                                />
+                            )}
+
+                            <div className={`
+                                ${isExpanded
+                                    ? 'opacity-100 ml-3 flex-1'
+                                    : 'opacity-0 w-0 overflow-hidden'
+                                }
+                                transition-all duration-200
+                                whitespace-nowrap
+                            `}>
+                                <span className={currentTheme.text}>
+                                    {item.label}
+                                </span>
+                                {item.count && (
+                                    <span className={`ml-2 text-sm ${isActive ? currentTheme.text : currentTheme.secondaryText}`}>
+                                        {item.count}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
