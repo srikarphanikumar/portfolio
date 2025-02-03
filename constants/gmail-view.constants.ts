@@ -42,7 +42,7 @@ export const EMAILS = {
             preview: 'A journey from Electronics Engineering to Frontend Development...',
             content: `
                 <div style="margin-bottom: 20px;">
-                    <img src="/Srikar-1.png" alt="Srikar Phani Kumar Marti" style="max-width: 300px; border-radius: 8px;" />
+                    <img src="/Srikar.jpeg" alt="Srikar Phani Kumar Marti" style="max-width: 300px; border-radius: 8px;" />
                 </div>
                 <p>Hello! I'm Srikar, a Senior Frontend Engineer currently working at Raymond James in Saint Petersburg, FL.</p>
                 <p>My journey began with a Bachelor's in Electronics and Communication, followed by a Master's in Electrical Engineering from the University of New Haven. I recently completed my MBA in Information Technology from Campbellsville University, combining technical expertise with business acumen.</p>

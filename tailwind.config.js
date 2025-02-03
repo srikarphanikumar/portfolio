@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
     content: [
         "./app/**/*.{js,ts,jsx,tsx}",
@@ -5,6 +7,12 @@ module.exports = {
     ],
     theme: {
         extend: {
+            colors: {
+                amber: colors.amber,
+                green: colors.green,
+                pink: colors.pink,
+                gray: colors.gray
+            },
             fontFamily: {
                 'sans': ['Arial', 'sans-serif'],
                 'serif': ['Georgia', 'serif'],
