@@ -9,22 +9,10 @@ export const ThemeSwitcher = () => {
 
     const themeOptions = [
         {
-            name: 'Light',
-            value: 'light',
-            color: 'bg-gray-100',
-            textColor: 'text-gray-800'
-        },
-        {
             name: 'Cream',
             value: 'cream',
             color: 'bg-amber-100',
             textColor: 'text-gray-800'
-        },
-        {
-            name: 'Dark',
-            value: 'dark',
-            color: 'bg-gray-900',
-            textColor: 'text-white'
         },
         {
             name: 'Neon Green',
