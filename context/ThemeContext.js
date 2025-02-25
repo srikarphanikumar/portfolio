@@ -67,7 +67,7 @@ export const themes = {
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
-    const [currentTheme, setCurrentTheme] = useState(themes.cream);
+    const [currentTheme, setCurrentTheme] = useState(themes.neonGreen);
 
     const changeTheme = (themeName) => {
         setCurrentTheme(themes[themeName]);

@@ -20,6 +20,7 @@ const EmailContent = ({ content }) => {
                     [&>p]:mb-4 [&>p]:leading-relaxed
                     [&>ul>li]:mb-2 [&>ul>li>ul]:mt-2 [&>ul>li>ul]:ml-4
                     [&_img]:rounded-lg [&_img]:max-w-full [&_img]:h-auto
+                    overflow-auto
                 `}
         dangerouslySetInnerHTML={{ __html: content }}
       />
