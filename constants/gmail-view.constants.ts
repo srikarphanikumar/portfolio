@@ -140,88 +140,74 @@ export const EMAILS = {
     skills: [
         {
             id: 'skills-1',
-            subject: 'Technical Expertise Overview',
-            preview: 'Comprehensive skillset in frontend development and beyond...',
+            subject: 'Frontend Core Skills',
+            preview: 'HTML, CSS, JavaScript, TypeScript, React, Angular, Next.js with proficiency levels...',
             content: `
-                <p>Core Technologies:</p>
+                <p>Frontend Core Technologies:</p>
                 <ul>
-                    <li>Frontend Development:
-                        <ul>
-                            <li>HTML5 / CSS3 / JavaScript / TypeScript</li>
-                            <li>Angular with RXJS and NgRx</li>
-                            <li>React JS with Redux Toolkit and Next JS</li>
-                        </ul>
-                    </li>
-                    <li>Backend & Database:
-                        <ul>
-                            <li>Python with Django and Flask</li>
-                            <li>Node.js</li>
-                            <li>SQL and Oracle DB</li>
-                        </ul>
-                    </li>
-                    <li>DevOps & Tools:
-                        <ul>
-                            <li>Jenkins / TFS</li>
-                            <li>Git / Github / Bitbucket</li>
-                            <li>JIRA for project management</li>
-                        </ul>
-                    </li>
+                    <li>HTML5 — 90% proficiency</li>
+                    <li>CSS3 — 85% proficiency</li>
+                    <li>JavaScript — 88% proficiency</li>
+                    <li>TypeScript — 85% proficiency</li>
+                    <li>React — 92% proficiency</li>
+                    <li>Angular — 80% proficiency</li>
+                    <li>Next.js — 78% proficiency</li>
+                    <li>Redux — 84% proficiency</li>
+                    <li>Accessibility (a11y / WCAG) — 82% proficiency</li>
                 </ul>
+                <p>I leverage the strengths of each framework based on project requirements, with React being my strongest suit.</p>
             `,
             date: 'Jan 22'
         },
         {
             id: 'skills-2',
-            subject: 'Architecture & Development Practices',
-            preview: 'Expertise in micro frontend architecture and modern development practices...',
+            subject: 'Styling & Design Skills',
+            preview: 'Tailwind CSS, Bootstrap, SASS, UI/UX design capabilities...',
             content: `
-                <p>Specialized Areas:</p>
+                <p>Styling & Design:</p>
                 <ul>
-                    <li>Micro Frontend Architecture Implementation
-                        <ul>
-                            <li>Module Federation</li>
-                            <li>Independent deployment strategies</li>
-                            <li>Scalable component design</li>
-                        </ul>
-                    </li>
-                    <li>Performance Optimization
-                        <ul>
-                            <li>Lazy loading implementation</li>
-                            <li>Bundle size optimization</li>
-                            <li>Runtime performance tuning</li>
-                        </ul>
-                    </li>
+                    <li>Tailwind CSS — 88% proficiency</li>
+                    <li>Bootstrap — 85% proficiency</li>
+                    <li>SASS/SCSS — 80% proficiency</li>
+                    <li>UI/UX Design — 86% proficiency</li>
+                    <li>React Native (Mobile) — 79% proficiency</li>
+                </ul>
+                <p>Architecture Expertise:</p>
+                <ul>
+                    <li>Micro Frontend Architecture with Module Federation</li>
+                    <li>Independent deployment strategies</li>
+                    <li>Scalable, reusable component design</li>
+                    <li>Custom Angular Material library development</li>
                 </ul>
             `,
             date: 'Jan 21'
         },
         {
             id: 'skills-3',
-            subject: 'Frontend Framework Expertise',
-            preview: 'Detailed breakdown of Angular and React capabilities...',
+            subject: 'Backend, Database & Cloud Skills',
+            preview: 'Node.js, SQL, MongoDB, Firebase, AWS with proficiency levels...',
             content: `
-                <p>Angular Ecosystem:</p>
+                <p>Backend & Database:</p>
                 <ul>
-                    <li>Angular Material customization and extension</li>
-                    <li>State management with RXJS and NgRx</li>
-                    <li>Angular performance optimization techniques</li>
-                    <li>Custom Angular Material library development</li>
+                    <li>Node.js — 85% proficiency</li>
+                    <li>SQL / MySQL — 82% proficiency</li>
+                    <li>MongoDB — 78% proficiency</li>
+                    <li>Firebase — 80% proficiency</li>
                 </ul>
-                <p>React Ecosystem:</p>
+                <p>Cloud & DevOps:</p>
                 <ul>
-                    <li>React with Redux Toolkit for state management</li>
-                    <li>Next.js for server-side rendering</li>
-                    <li>React performance optimization</li>
-                    <li>Custom hooks and component development</li>
+                    <li>AWS — 75% proficiency</li>
+                    <li>Docker — 75% proficiency</li>
+                    <li>Jenkins — 78% proficiency</li>
+                    <li>Git — 88% proficiency</li>
                 </ul>
-                <p>I leverage the strengths of each framework based on project requirements.</p>
             `,
             date: 'Jan 20'
         },
         {
             id: 'skills-4',
-            subject: 'Developer Tools & Methodologies',
-            preview: 'Tools, processes, and methodologies that enhance development workflow...',
+            subject: 'Architecture & Development Practices',
+            preview: 'Micro frontend architecture, performance optimization, CI/CD workflows...',
             content: `
                 <p>Development Methodologies:</p>
                 <ul>
@@ -229,123 +215,192 @@ export const EMAILS = {
                     <li>Test-Driven Development (TDD)</li>
                     <li>Continuous Integration/Continuous Deployment</li>
                 </ul>
+                <p>Performance Optimization:</p>
+                <ul>
+                    <li>Lazy loading implementation</li>
+                    <li>Bundle size optimization</li>
+                    <li>Runtime performance tuning — consistently achieving 20-40% improvements</li>
+                </ul>
                 <p>Tools & Platforms:</p>
                 <ul>
                     <li>Version Control: Git with GitHub, GitLab, and Bitbucket</li>
-                    <li>CI/CD: Jenkins, GitHub Actions</li>
+                    <li>CI/CD: Jenkins, GitHub Actions, TFS</li>
                     <li>Project Management: JIRA, Trello</li>
                     <li>Collaboration: Confluence, Slack</li>
                 </ul>
-                <p>These methodologies and tools help me maintain high productivity and code quality.</p>
             `,
             date: 'Jan 19'
+        },
+        {
+            id: 'skills-5',
+            subject: 'Framework Deep Dives: Angular & React',
+            preview: 'Detailed breakdown of Angular and React ecosystem capabilities...',
+            content: `
+                <p>Angular Ecosystem:</p>
+                <ul>
+                    <li>Angular Material customization and custom library development</li>
+                    <li>State management with RxJS and NgRx</li>
+                    <li>Angular performance optimization techniques</li>
+                    <li>SSO implementation and third-party integrations</li>
+                </ul>
+                <p>React Ecosystem:</p>
+                <ul>
+                    <li>React with Redux Toolkit for state management</li>
+                    <li>Next.js for server-side rendering</li>
+                    <li>React Native for mobile development</li>
+                    <li>Custom hooks and reusable component development</li>
+                </ul>
+            `,
+            date: 'Jan 18'
         }
     ],
     experience: [
         {
             id: 'exp-1',
-            subject: 'Current Role: Senior Application Engineer at Raymond James',
-            preview: 'Leading frontend development and driving significant improvements...',
+            subject: 'Current Role: Sr Engineer Apps Development at Raymond James Financial',
+            preview: 'Leading frontend development, improving load times and mentoring engineers...',
             content: `
-                <p>At Raymond James (October 2023 - Present), I've achieved significant milestones:</p>
+                <p>At Raymond James Financial (Oct 2023 - Present), I have:</p>
                 <ul>
-                    <li>Increased user engagement by 35% through interactive web applications</li>
-                    <li>Led cross-functional teams in delivering 4+ major projects</li>
-                    <li>Optimized application performance by 20%</li>
+                    <li>Led a team of 5 developers to redesign the company website, improving load times by 40%</li>
+                    <li>Developed reusable components in Angular, enhancing development efficiency by 25%</li>
+                    <li>Mentored junior engineers, providing guidance and support in their career development</li>
                     <li>Implemented CI/CD workflows for streamlined deployments</li>
                 </ul>
-                <p>Key Outcome: Increased team productivity by 30% and received positive feedback from 85% of users.</p>
+                <p>Key Achievements: 40% improvement in load times, 25% increase in development efficiency.</p>
+                <p>Skills: Angular, Team Leadership, Performance Optimization</p>
             `,
-            date: 'Jan 18',
+            date: 'Jan 17',
             attachments: [{ name: 'Srikar-Phani-Kumar-M-Resume.pdf' }]
         },
         {
             id: 'exp-2',
-            subject: 'Previous Role: Senior Frontend Developer at Deloitte',
-            preview: 'Implementing innovative solutions and delivering rapid results...',
+            subject: 'Project Delivery Specialist at Deloitte',
+            preview: '50% faster API response, 50% web traffic boost, 99.9% uptime...',
             content: `
-                <p>During my time at Deloitte (January 2022 - October 2023):</p>
+                <p>During my time at Deloitte (Jan 2022 - Oct 2023):</p>
                 <ul>
-                    <li>Implemented seamless transitions between Angular and React components in a large-scale application, enhancing user experience and increasing site traffic by 25%</li>
-                    <li>Delivered MVP in React within one month, accelerating launch by 2 months</li>
-                    <li>Improved data retrieval efficiency by 40%</li>
+                    <li>Accelerated API response time by 50% in 2 weeks by implementing caching and optimizing queries</li>
+                    <li>Oversaw HTML to Angular Material & Ag-grid migration, implementing best practices and accessibility standards, resulting in improved navigation and a 50% web traffic boost in 6 months</li>
+                    <li>Resolved critical production issues with a turnaround time of less than 24 hours, maintaining a 99.9% uptime</li>
                 </ul>
-                <p>Key Outcome: Achieved 20% increase in application performance and 50% improvement in team efficiency.</p>
-            `,
-            date: 'Jan 17'
-        },
-        {
-            id: 'exp-3',
-            subject: 'Senior Angular Developer at Virtusa',
-            preview: 'Creating reusable components and improving architecture...',
-            content: `
-                <p>At Virtusa (November 2019 - December 2021), I:</p>
-                <ul>
-                    <li>Developed a custom Angular Material library that was adopted across multiple projects, improving UI consistency and reducing development time by 20%</li>
-                    <li>Implemented a micro frontend architecture, allowing for independent deployment of features and improving scalability, which led to a 30% increase in team productivity</li>
-                    <li>Integrated the custom Angular Material library into the micro frontend architecture, ensuring a consistent user interface across all micro frontends and enhancing user experience</li>
-                </ul>
-                <p>Key Outcome: Initiated and enhanced the scalability and maintainability of the projects. This led to a 25% increase in user engagement and a 15% reduction in maintenance costs.</p>
+                <p>Key Achievements: 50% faster API response time, 50% increase in web traffic, 99.9% uptime.</p>
+                <p>Skills: Angular Material, API Optimization, Accessibility, Issue Resolution</p>
             `,
             date: 'Jan 16'
         },
         {
-            id: 'exp-4',
-            subject: 'Frontend Developer at Exadata Inc',
-            preview: 'Standardizing development practices and transitioning to modern architecture...',
+            id: 'exp-3',
+            subject: 'Senior Frontend Developer at Virtusa',
+            preview: 'Component library, WCAG 2.0 compliance, 20% increase in user engagement...',
             content: `
-                <p>During my time at Exadata Inc (June 2018 - November 2019), I:</p>
+                <p>At Virtusa (Nov 2019 - Dec 2021), I:</p>
                 <ul>
-                    <li>Standardized the frontend development across multiple projects by creating reusable Angular components, leading to a 20% reduction in development time and a 15% increase in code reusability</li>
-                    <li>Championed the transition to a micro frontend architecture using Angular, improving feature modularity and enabling independent deployments, which resulted in a 25% increase in deployment speed</li>
-                    <li>Enhanced the user interface of micro frontends by integrating the custom Angular Material library, improving user satisfaction by 30% and reducing UI inconsistencies</li>
+                    <li>Developed and integrated a comprehensive component library, boosting reusability and efficiency across multiple applications</li>
+                    <li>Improved application accessibility compliance by implementing WCAG 2.0 standards, resulting in a 20% increase in user accessibility</li>
+                    <li>Increased user engagement by 20% by implementing interactive UI elements with Angular</li>
                 </ul>
-                <p>Key Outcome: Led to a 35% increase in the delivery rate of new features. Custom Angular Material library also contributed to a 20% growth in the company's customer base within a year.</p>
+                <p>Key Achievements: Boosted reusability with component library, 20% increase in user accessibility, 20% increase in user engagement.</p>
+                <p>Skills: Angular, Component Libraries, Accessibility, UI/UX</p>
             `,
             date: 'Jan 15'
+        },
+        {
+            id: 'exp-4',
+            subject: 'Frontend Developer (Angular) at Exadata Inc',
+            preview: 'SSO implementation, 25% decrease in user errors, 95% uptime...',
+            content: `
+                <p>During my time at Exadata Inc as Angular Developer (Dec 2018 - Nov 2019), I:</p>
+                <ul>
+                    <li>Implemented SSO to streamline user experience and increase efficiency in data entry processes</li>
+                    <li>Coordinated with the UX team to redesign the user interface, resulting in a 25% decrease in user errors and a 15% increase in user engagement</li>
+                    <li>Managed a 95% uptime for all web applications through robust backend integration</li>
+                </ul>
+                <p>Key Achievements: 25% decrease in user errors, 15% increase in user engagement, 95% uptime.</p>
+                <p>Skills: Angular, SSO Implementation, UI/UX, Backend Integration</p>
+            `,
+            date: 'Jan 14'
+        },
+        {
+            id: 'exp-5',
+            subject: 'Frontend Developer (ReactJS) at Exadata Inc',
+            preview: 'WCAG 2.0 compliance, 20% accessibility improvement, 15% conversion increase...',
+            content: `
+                <p>During my time at Exadata Inc as React Developer (Jun 2018 - Dec 2018), I:</p>
+                <ul>
+                    <li>Improved app accessibility compliance by implementing WCAG 2.0 standards within 1 month, resulting in a 20% increase in user accessibility</li>
+                    <li>Completed integration of a third-party analytics app in 2 weeks, providing insights that led to a 15% increase in conversion rates</li>
+                </ul>
+                <p>Key Achievements: 20% increase in user accessibility, 15% increase in conversion rates.</p>
+                <p>Skills: ReactJS, Accessibility, Third-Party Integrations</p>
+            `,
+            date: 'Jan 13'
+        },
+        {
+            id: 'exp-6',
+            subject: 'Teaching Assistant at University of New Haven',
+            preview: 'Assisting in teaching mathematics and supporting students...',
+            content: `
+                <p>At University of New Haven (August 2016 - May 2018), I:</p>
+                <ul>
+                    <li>Assisted professors in teaching, grading assignments, and providing support to students</li>
+                    <li>Helped students understand complex mathematical concepts including Calculus, Algebra, and Trigonometry</li>
+                    <li>Improved student comprehension and sparked greater interest in mathematics among several students</li>
+                </ul>
+                <p>Skills: Calculus, Algebra, Trigonometry, Teaching, Mentoring</p>
+            `,
+            date: 'Jan 12'
         }
     ],
     projects: [
         {
             id: 'proj-1',
-            subject: 'NPM Packages & Technical Publications',
-            preview: 'Published packages and technical articles for the developer community...',
+            subject: 'NPM Packages',
+            preview: 'Published open-source packages for the developer community...',
             content: `
                 <p>Published NPM Packages:</p>
                 <ul>
-                    <li><strong>typescript-utilitys</strong>: TypeScript utilities for enhanced productivity</li>
-                    <li><strong>scss-utilitys</strong>: SCSS utilities for streamlined styling</li>
-                    <li><strong>zapid</strong>: Generate unique, random IDs with built-in safety measures</li>
-                    <li><strong>@parsekit/string-to-boolean</strong>: Convert strings to boolean values with extensive options</li>
-                    <li><strong>@poly-kit/number-utils</strong>: Number utilities for JavaScript, TypeScript, React and Angular</li>
-                </ul>
-                <p>Technical Articles:</p>
-                <ul>
-                    <li>"Top 20 1-Liners in TypeScript to make your life 10x more productive"</li>
-                    <li>"Converting strings to booleans made easy with parsekit/string-to-boolean"</li>
-                    <li>"Supercharge your apps with poly-kit/number-utils"</li>
-                    <li>"Zapid: ID generation reinvented with crypto-grade security"</li>
+                    <li><strong>typescript-utilitys</strong>: TypeScript utilities for enhanced productivity — <a href="https://www.npmjs.com/package/typescript-utilitys" target="_blank">View Package</a></li>
+                    <li><strong>scss-utilitys</strong>: SCSS utilities for streamlined styling — <a href="https://www.npmjs.com/package/scss-utilitys" target="_blank">View Package</a></li>
+                    <li><strong>zapid</strong>: Generate unique, random IDs with built-in crypto-grade safety measures — <a href="https://www.npmjs.com/package/zapid" target="_blank">View Package</a></li>
+                    <li><strong>@parsekit/string-to-boolean</strong>: Convert strings to boolean values with extensive options — <a href="https://www.npmjs.com/package/@parsekit/string-to-boolean" target="_blank">View Package</a></li>
+                    <li><strong>@poly-kit/number-utils</strong>: Number utilities for JavaScript, TypeScript, React and Angular — <a href="https://www.npmjs.com/package/@poly-kit/number-utils" target="_blank">View Package</a></li>
                 </ul>
             `,
-            date: 'Jan 14',
-            attachments: [{ name: 'project-demos.pdf' }]
+            date: 'Jan 11',
+            attachments: [{ name: 'Srikar-Phani-Kumar-M-Resume.pdf' }]
         },
         {
             id: 'proj-2',
-            subject: 'Interactive Web Applications',
-            preview: 'Showcasing interactive projects built with modern web technologies...',
+            subject: 'Technical Articles on Medium',
+            preview: 'Published articles on TypeScript, utilities, and developer productivity...',
             content: `
-                <p>Interactive Applications:</p>
+                <p>Technical Articles:</p>
                 <ul>
-                    <li><strong>Snake Game</strong>: A classic game reimagined with modern web technologies</li>
-                    <li><strong>Image Enhancer</strong>: TensorFlow-powered image processing application</li>
+                    <li><strong>"Top 20 1-Liners in TypeScript"</strong>: TypeScript one-liners to make your life 10x more productive — <a href="https://medium.com/@srikar.vamsi/top-20-1-liners-in-typescript-to-make-your-life-10x-more-productive-b4d1fa7a2164" target="_blank">Read Article</a></li>
+                    <li><strong>"String to Boolean Conversion Guide"</strong>: Converting strings to booleans made easy with parsekit/string-to-boolean — <a href="https://medium.com/@srikar.vamsi/converting-strings-to-booleans-made-easy-with-parsekit-string-to-boolean-2aa227f9e7a5" target="_blank">Read Article</a></li>
+                    <li><strong>"Supercharge Apps with poly-kit/number-utils"</strong>: Enhance your applications with powerful number utilities — <a href="https://medium.com/@srikar.vamsi/supercharge-your-apps-with-poly-kit-number-utils-884ae0b04a1e" target="_blank">Read Article</a></li>
+                    <li><strong>"Zapid: ID Generation Reinvented"</strong>: ID generation with crypto-grade security — <a href="https://medium.com/@srikar.vamsi/zapid-id-generation-reinvented-with-crypto-grade-security-a55ef6481f87" target="_blank">Read Article</a></li>
                 </ul>
-                <p>These applications demonstrate my ability to create engaging, interactive experiences using the latest web technologies while maintaining clean code and optimal performance.</p>
             `,
-            date: 'Jan 13'
+            date: 'Jan 10'
         },
         {
             id: 'proj-3',
+            subject: 'Interactive Web Applications',
+            preview: 'Snake Game and Image Enhancer built with modern web technologies...',
+            content: `
+                <p>Interactive Applications:</p>
+                <ul>
+                    <li><strong>Snake Game</strong>: A classic game reimagined with modern web technologies — <a href="https://snake-game-five-gamma.vercel.app/" target="_blank">Play the Game</a></li>
+                    <li><strong>Image Enhancer</strong>: TensorFlow-powered image processing application — <a href="https://image-enhancer-blush.vercel.app/" target="_blank">View Project</a></li>
+                </ul>
+                <p>These applications demonstrate my ability to create engaging, interactive experiences using the latest web technologies while maintaining clean code and optimal performance.</p>
+            `,
+            date: 'Jan 9'
+        },
+        {
+            id: 'proj-4',
             subject: 'Custom Angular Material Library',
             preview: 'Developer tooling to improve UI consistency and development efficiency...',
             content: `
@@ -356,10 +411,11 @@ export const EMAILS = {
                     <li>Reduced development time by 20%</li>
                     <li>Improved UI consistency across multiple projects</li>
                     <li>Documented components for easy adoption by team members</li>
+                    <li>Adopted across multiple projects at Virtusa and Exadata</li>
                 </ul>
-                <p>This library has been adopted across multiple projects and has significantly improved development efficiency and product quality.</p>
+                <p>This library significantly improved development efficiency and product quality across teams.</p>
             `,
-            date: 'Jan 12'
+            date: 'Jan 8'
         }
     ],
     contact: [
@@ -425,8 +481,8 @@ export const EMAILS = {
 export const NAVIGATION_ITEMS = [
     { id: 'home', label: 'Home', icon: 'Mail', count: 4 },
     { id: 'about', label: 'About', icon: 'User', count: 4 },
-    { id: 'skills', label: 'Skills', icon: 'Code', count: 4 },
-    { id: 'experience', label: 'Experience', icon: 'Briefcase', count: 4 },
-    { id: 'projects', label: 'Projects', icon: 'FolderOpen', count: 3 },
+    { id: 'skills', label: 'Skills', icon: 'Code', count: 5 },
+    { id: 'experience', label: 'Experience', icon: 'Briefcase', count: 6 },
+    { id: 'projects', label: 'Projects', icon: 'FolderOpen', count: 4 },
     { id: 'contact', label: 'Contact', icon: 'Phone', count: 3 }
 ];
