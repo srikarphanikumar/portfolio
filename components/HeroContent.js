@@ -94,7 +94,7 @@ const HeroContent = () => {
                     transition={{ duration: 0.5, delay: 0.5 }}
                     className="relative inline-block"
                 >
-                    <Link href="/about">
+                    <Link href="/terminal/about">
                         <span className="inline-block font-['Space_Mono'] text-lg px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-blue-500 text-blue-500 rounded-full relative overflow-hidden transition-all duration-300 hover:text-white group">
                             <span className="relative z-10">Learn More About Me</span>
                             <span className="absolute inset-0 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>

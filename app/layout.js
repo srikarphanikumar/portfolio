@@ -1,5 +1,11 @@
 import '../styles/globals.css';
 
+export const metadata = {
+    icons: {
+        icon: '/Srikar.jpeg',
+    },
+};
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className="h-full">
