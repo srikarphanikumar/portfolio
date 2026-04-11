@@ -32,6 +32,20 @@ const ThemeSelector = () => {
                 </div>
             </motion.div>
 
+            {/* Center Divider with Name */}
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 h-full z-30 flex items-center justify-center pointer-events-none">
+                {/* Gradient line behind text */}
+                <div className="absolute w-px h-full bg-gradient-to-b from-green-400 via-gray-500 to-gray-700 opacity-60" />
+                {/* Name text */}
+                <div
+                    style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)', letterSpacing: '0.2em' }}
+                    className="font-mono font-bold text-lg select-none relative z-10 drop-shadow-lg"
+                >
+                    <span className="text-green-400" style={{ textShadow: '0 0 12px rgba(74,222,128,0.8)' }}>SRIKAR PHANI </span>
+                    <span className="text-gray-700" style={{ textShadow: '0 0 12px rgba(180,180,180,0.4)' }}>KUMAR MARTI</span>
+                </div>
+            </div>
+
             {/* Gmail Theme Side */}
             <motion.div
                 className="w-1/2 h-full relative cursor-pointer"
