@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 import { Search, Menu } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useTheme } from '../context/ThemeContext';
 
@@ -67,7 +69,13 @@ export const Header = ({ onMenuClick, showMenuButton }) => {
                 </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center space-x-2">
+                <Link href="/">
+                    <span className={`flex items-center px-3 py-2 rounded-lg text-sm ${currentTheme.button} ${currentTheme.buttonHover} ${currentTheme.text} transition-colors duration-200`}>
+                        <ArrowLeft className="w-4 h-4 mr-1" />
+                        Theme Switcher
+                    </span>
+                </Link>
                 <ThemeSwitcher />
             </div>
         </div>
