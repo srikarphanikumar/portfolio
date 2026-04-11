@@ -52,11 +52,9 @@ const ThemeSelector = () => {
             </div>
 
             {/* Bottom name bar */}
-            <div className="w-full h-12 flex items-center justify-center z-30 pointer-events-none" style={{ background: 'linear-gradient(to right, #000000 50%, #fce7f3 50%)' }}>
-                <span className="font-mono font-semibold text-sm tracking-widest">
-                    <span className="text-green-400">SRIKAR PHANI KUMAR</span>
-                    <span className="text-gray-400 mx-3">·</span>
-                    <span className="text-gray-700">MARTI</span>
+            <div className="w-full h-20 flex items-center justify-center z-30 pointer-events-none" style={{ background: 'linear-gradient(to right, #1a1a2e, #16213e, #0f3460, #533483)' }}>
+                <span className="font-mono font-bold text-xl tracking-[0.3em]" style={{ background: 'linear-gradient(to right, #4ade80, #60a5fa, #e879f9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    SRIKAR PHANI KUMAR MARTI
                 </span>
             </div>
         </div>
