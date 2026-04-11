@@ -2,7 +2,7 @@ import '../styles/globals.css';
 
 export const metadata = {
     icons: {
-        icon: '/Srikar.jpeg',
+        icon: '/favicon.jpg',
     },
 };
 
