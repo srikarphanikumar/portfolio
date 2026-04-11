@@ -334,8 +334,28 @@ export default function VSCodePage() {
                     justifyContent: 'center',
                     flexShrink: 0,
                     borderBottom: `1px solid ${C.border}`,
+                    position: 'relative',
                 }}
             >
+                <a
+                    href="/"
+                    style={{
+                        position: 'absolute',
+                        left: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        color: '#cccccc',
+                        fontSize: '12px',
+                        fontFamily: 'monospace',
+                        textDecoration: 'none',
+                        opacity: 0.8,
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = 1}
+                    onMouseLeave={e => e.currentTarget.style.opacity = 0.8}
+                >
+                    ← Theme Switcher
+                </a>
                 <span style={{ color: '#cccccc', fontSize: '12px', fontFamily: 'monospace' }}>
                     portfolio — VS Code
                 </span>

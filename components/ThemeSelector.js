@@ -39,6 +39,49 @@ const VSCodeLines = () => (
     </div>
 );
 
+// Fake iOS app icons shown as decoration in the iOS panel
+const IOSDecoration = () => {
+    const fakeApps = [
+        { emoji: '🏠', gradient: 'linear-gradient(135deg, #FF6B6B, #FF8E53)' },
+        { emoji: '👤', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
+        { emoji: '⌨️', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' },
+        { emoji: '💼', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
+        { emoji: '📁', gradient: 'linear-gradient(135deg, #4facfe, #a18cd1)' },
+        { emoji: '✉️', gradient: 'linear-gradient(135deg, #fda085, #f6d365)' },
+    ];
+
+    return (
+        <div style={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 12,
+            opacity: 0.35,
+            pointerEvents: 'none',
+            userSelect: 'none',
+        }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+                {fakeApps.map((app, i) => (
+                    <div key={i} style={{
+                        width: 44,
+                        height: 44,
+                        borderRadius: '22%',
+                        background: app.gradient,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 20,
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                    }}>{app.emoji}</div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 const ThemeSelector = () => {
     const router = useRouter();
 
@@ -47,6 +90,8 @@ const ThemeSelector = () => {
             router.push('/terminal');
         } else if (theme === 'gmail') {
             router.push('/gmail');
+        } else if (theme === 'ios') {
+            router.push('/ios');
         } else {
             router.push('/vscode');
         }
@@ -59,8 +104,8 @@ const ThemeSelector = () => {
                 {/* Terminal Theme Side */}
                 <motion.div
                     className="h-full bg-black relative cursor-pointer"
-                    style={{ width: '33.333%' }}
-                    whileHover={{ width: '40%' }}
+                    style={{ width: '25%' }}
+                    whileHover={{ width: '35%' }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     onClick={() => handleThemeSelect('terminal')}
                 >
@@ -75,8 +120,8 @@ const ThemeSelector = () => {
                 {/* Gmail Theme Side */}
                 <motion.div
                     className="h-full relative cursor-pointer"
-                    style={{ width: '33.333%' }}
-                    whileHover={{ width: '40%' }}
+                    style={{ width: '25%' }}
+                    whileHover={{ width: '35%' }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     onClick={() => handleThemeSelect('gmail')}
                 >
@@ -92,8 +137,8 @@ const ThemeSelector = () => {
                 {/* VS Code Theme Side */}
                 <motion.div
                     className="h-full relative cursor-pointer overflow-hidden"
-                    style={{ width: '33.333%', backgroundColor: '#1e1e1e', borderLeft: '1px solid #404040' }}
-                    whileHover={{ width: '40%' }}
+                    style={{ width: '25%', backgroundColor: '#1e1e1e', borderLeft: '1px solid #404040' }}
+                    whileHover={{ width: '35%' }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     onClick={() => handleThemeSelect('vscode')}
                 >
@@ -104,6 +149,25 @@ const ThemeSelector = () => {
                             style={{ color: '#569cd6' }}
                         >
                             VS Code Inspired View
+                        </h2>
+                    </div>
+                </motion.div>
+
+                {/* iOS Theme Side */}
+                <motion.div
+                    className="h-full relative cursor-pointer overflow-hidden"
+                    style={{ width: '25%', background: 'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #533483)', borderLeft: '1px solid rgba(255,255,255,0.1)' }}
+                    whileHover={{ width: '35%' }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    onClick={() => handleThemeSelect('ios')}
+                >
+                    <IOSDecoration />
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <h2
+                            className="text-4xl font-bold font-mono text-center px-4"
+                            style={{ color: 'white' }}
+                        >
+                            iOS Inspired View
                         </h2>
                     </div>
                 </motion.div>
