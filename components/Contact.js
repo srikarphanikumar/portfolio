@@ -5,7 +5,7 @@ import emailjs from 'emailjs-com';
 import { FaUser, FaEnvelope, FaComment, FaLaugh } from 'react-icons/fa';
 import TechJokesNewspaper from './DadJokes';
 
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const SERVICE_ID = 'service_bf4nnjs';
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
