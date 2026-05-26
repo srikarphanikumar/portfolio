@@ -2,42 +2,23 @@ import WritingList from '../../../components/Writing';
 
 export const revalidate = 86400;
 
-function extractCDATA(content, tag) {
-    const re = new RegExp(`<${tag}><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`);
-    const m = content.match(re);
-    return m ? m[1].trim() : null;
-}
-
-function extractTag(content, tag) {
-    const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`);
-    const m = content.match(re);
-    return m ? m[1].trim() : null;
-}
-
-function stripHtml(html) {
-    return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
 async function getPosts() {
     try {
-        const res = await fetch('https://mspk.substack.com/feed', {
+        // Substack's API returns up to 50 posts per request; RSS is capped at 20
+        const res = await fetch('https://mspk.substack.com/api/v1/posts?limit=50', {
             next: { revalidate: 86400 },
         });
-        if (!res.ok) return [];
+        if (!res.ok) throw new Error('fetch failed');
 
-        const xml = await res.text();
-        const itemMatches = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
-
-        return itemMatches.map((m) => {
-            const raw = m[1];
-            const title = extractCDATA(raw, 'title') ?? extractTag(raw, 'title') ?? 'Untitled';
-            const link = extractTag(raw, 'link') ?? '';
-            const pubDate = extractTag(raw, 'pubDate') ?? '';
-            const descRaw = extractCDATA(raw, 'description') ?? extractTag(raw, 'description') ?? '';
-            const excerpt = stripHtml(descRaw).slice(0, 180).trimEnd();
-
-            return { title, link, pubDate, excerpt };
-        }).filter((p) => p.link);
+        const data = await res.json();
+        return data
+            .map((p) => ({
+                title: p.title ?? 'Untitled',
+                link: p.canonical_url ?? '',
+                pubDate: p.post_date ?? '',
+                excerpt: p.subtitle ?? p.truncated_body_text ?? '',
+            }))
+            .filter((p) => p.link);
     } catch {
         return [];
     }
