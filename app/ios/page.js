@@ -45,6 +45,13 @@ const MessageIcon = () => (
     </svg>
 );
 
+const PenIcon = () => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+    </svg>
+);
+
 const CloseIcon = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
         <line x1="18" y1="6" x2="6" y2="18" />
@@ -60,6 +67,7 @@ const APP_ICONS = [
     { id: 'skills',     label: 'Skills',     Icon: CodeIcon,      gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)', badge: 6 },
     { id: 'experience', label: 'Experience', Icon: BriefcaseIcon, gradient: 'linear-gradient(135deg, #f093fb, #f5576c)', badge: 5 },
     { id: 'projects',   label: 'Projects',   Icon: FolderIcon,    gradient: 'linear-gradient(135deg, #4facfe, #a18cd1)', badge: 7 },
+    { id: 'writing',    label: 'Writing',    Icon: PenIcon,       gradient: 'linear-gradient(135deg, #f093fb, #f5576c)', badge: null },
     { id: 'contact',    label: 'Contact',    Icon: MessageIcon,   gradient: 'linear-gradient(135deg, #fda085, #f6d365)', badge: null },
 ];
 
@@ -340,6 +348,64 @@ const ProjectsContent = () => (
     </div>
 );
 
+const WritingContent = () => (
+    <div>
+        <div style={{
+            background: 'linear-gradient(135deg, rgba(240,147,251,0.15), rgba(245,87,108,0.05))',
+            border: '1px solid rgba(240,147,251,0.2)',
+            borderRadius: 16,
+            padding: '18px 20px',
+            marginBottom: 20,
+        }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 10 }}>Newsletter</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: 'white', marginBottom: 6 }}>mSPK on Substack</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', marginBottom: 12, lineHeight: 1.5 }}>
+                Weekly articles on frontend craft, browser internals, and the art of writing less code that does more.
+            </div>
+            <a href="https://mspk.substack.com" target="_blank" rel="noopener noreferrer" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                background: 'rgba(240,147,251,0.15)', border: '1px solid rgba(240,147,251,0.3)',
+                borderRadius: 20, padding: '6px 14px',
+                color: '#f093fb', fontSize: 13, fontWeight: 600, textDecoration: 'none'
+            }}>
+                Read on Substack →
+            </a>
+        </div>
+
+        <div style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>Recent Topics</div>
+        {[
+            '$0 and Friends: The DevTools Shortcuts You\'re Missing',
+            'Stop Installing Form Libraries. The Browser Can Do This.',
+            'The inert Attribute: Stop Writing Focus Trap JavaScript',
+            'Stencil is the Framework Nobody Uses (But Maybe Should)',
+        ].map((title, i) => (
+            <div key={i} style={{
+                background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 12, padding: '12px 14px', marginBottom: 8,
+                fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.4
+            }}>
+                {title}
+            </div>
+        ))}
+
+        <div style={{ marginTop: 20, fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>Medium Articles</div>
+        {[
+            { title: 'Top 20 1-Liners in TypeScript', url: 'https://medium.com/@srikar.vamsi/top-20-1-liners-in-typescript-to-make-your-life-10x-more-productive-b4d1fa7a2164' },
+            { title: 'String to Boolean Conversion Guide', url: 'https://medium.com/@srikar.vamsi/converting-strings-to-booleans-made-easy-with-parsekit-string-to-boolean-2aa227f9e7a5' },
+            { title: 'Supercharge Apps with poly-kit/number-utils', url: 'https://medium.com/@srikar.vamsi/supercharge-your-apps-with-poly-kit-number-utils-884ae0b04a1e' },
+            { title: 'Zapid: ID Generation Reinvented', url: 'https://medium.com/@srikar.vamsi/zapid-id-generation-reinvented-with-crypto-grade-security-a55ef6481f87' },
+        ].map((article, i) => (
+            <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" style={{
+                display: 'block', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 12, padding: '12px 14px', marginBottom: 8,
+                fontSize: 13, color: '#4facfe', textDecoration: 'none', lineHeight: 1.4
+            }}>
+                {article.title} →
+            </a>
+        ))}
+    </div>
+);
+
 const ContactLink = ({ icon, label, value, href }) => (
     <a
         href={href}
@@ -477,6 +543,7 @@ const BottomSheet = ({ appId, onClose }) => {
             case 'skills':     return <SkillsContent animate={animateSkills} />;
             case 'experience': return <ExperienceContent />;
             case 'projects':   return <ProjectsContent />;
+            case 'writing':    return <WritingContent />;
             case 'contact':    return <ContactContent />;
             default:           return null;
         }
