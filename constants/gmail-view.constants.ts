@@ -418,6 +418,61 @@ export const EMAILS = {
             date: 'Jan 8'
         }
     ],
+    writing: [
+        {
+            id: 'writing-1',
+            subject: 'My Substack — mSPK Newsletter',
+            preview: 'Weekly articles on frontend craft, browser internals, and developer productivity...',
+            content: `
+      <p>I write a weekly newsletter on Substack called <strong>mSPK</strong> where I explore frontend engineering, browser internals, and the art of writing less code that does more.</p>
+      <p>Recent topics include:</p>
+      <ul>
+        <li>$0 and Friends: The DevTools Shortcuts You're Missing</li>
+        <li>Stop Installing Form Libraries. The Browser Can Do This.</li>
+        <li>The inert Attribute: Stop Writing Focus Trap JavaScript</li>
+        <li>Stencil is the Framework Nobody Uses (But Maybe Should)</li>
+      </ul>
+      <p>Subscribe and read at: <a href="https://mspk.substack.com" target="_blank">mspk.substack.com</a></p>
+    `,
+            date: 'Mar 13'
+        },
+        {
+            id: 'writing-2',
+            subject: 'Technical Articles on Medium',
+            preview: 'TypeScript one-liners, utility packages, and developer productivity articles...',
+            content: `
+      <p>Technical Articles on Medium:</p>
+      <ul>
+        <li><strong>"Top 20 1-Liners in TypeScript"</strong>: TypeScript one-liners to make your life 10x more productive — <a href="https://medium.com/@srikar.vamsi/top-20-1-liners-in-typescript-to-make-your-life-10x-more-productive-b4d1fa7a2164" target="_blank">Read Article</a></li>
+        <li><strong>"String to Boolean Conversion Guide"</strong>: Converting strings to booleans made easy with parsekit/string-to-boolean — <a href="https://medium.com/@srikar.vamsi/converting-strings-to-booleans-made-easy-with-parsekit-string-to-boolean-2aa227f9e7a5" target="_blank">Read Article</a></li>
+        <li><strong>"Supercharge Apps with poly-kit/number-utils"</strong>: Enhance your applications with powerful number utilities — <a href="https://medium.com/@srikar.vamsi/supercharge-your-apps-with-poly-kit-number-utils-884ae0b04a1e" target="_blank">Read Article</a></li>
+        <li><strong>"Zapid: ID Generation Reinvented"</strong>: ID generation with crypto-grade security — <a href="https://medium.com/@srikar.vamsi/zapid-id-generation-reinvented-with-crypto-grade-security-a55ef6481f87" target="_blank">Read Article</a></li>
+      </ul>
+    `,
+            date: 'Jan 10'
+        },
+        {
+            id: 'writing-3',
+            subject: 'Writing Philosophy & Topics',
+            preview: 'Why I write about frontend craft and what you can expect from my content...',
+            content: `
+      <p>I believe in writing about things that would have saved me hours when I was learning. My writing focuses on:</p>
+      <ul>
+        <li>Browser-native features that eliminate the need for heavy libraries</li>
+        <li>TypeScript patterns that make code cleaner and safer</li>
+        <li>DevTools tricks that speed up debugging and development</li>
+        <li>Open-source packages I've built and the problems they solve</li>
+        <li>Frontend performance and architecture decisions</li>
+      </ul>
+      <p>Find all my writing at:</p>
+      <ul>
+        <li>Substack: <a href="https://mspk.substack.com" target="_blank">mspk.substack.com</a></li>
+        <li>Medium: <a href="https://medium.com/@srikar.vamsi" target="_blank">medium.com/@srikar.vamsi</a></li>
+      </ul>
+    `,
+            date: 'Jan 8'
+        }
+    ],
     contact: [
         {
             id: 'contact-1',
@@ -437,6 +492,7 @@ export const EMAILS = {
                     <li>GitHub: github.com/srikarphanikumar</li>
                     <li>NPM: npmjs.com/~srikar497</li>
                     <li>Stack Overflow: stackoverflow.com/users/15034752/srikar-phani-kumar-m</li>
+                    <li>Substack: mspk.substack.com</li>
                 </ul>
             `,
             date: 'Jan 11'
@@ -452,6 +508,7 @@ export const EMAILS = {
                     <li><strong>GitHub:</strong> Explore my open-source contributions at github.com/srikarphanikumar</li>
                     <li><strong>Stack Overflow:</strong> View my technical solutions at stackoverflow.com/users/15034752/srikar-phani-kumar-m</li>
                     <li><strong>Medium:</strong> Read my technical articles at medium.com/@srikar.vamsi</li>
+                    <li><strong>Substack:</strong> Read my weekly newsletter at mspk.substack.com</li>
                 </ul>
                 <p>I look forward to connecting and possibly collaborating on exciting projects!</p>
             `,
@@ -484,5 +541,6 @@ export const NAVIGATION_ITEMS = [
     { id: 'skills', label: 'Skills', icon: 'Code', count: 5 },
     { id: 'experience', label: 'Experience', icon: 'Briefcase', count: 6 },
     { id: 'projects', label: 'Projects', icon: 'FolderOpen', count: 4 },
+    { id: 'writing', label: 'Writing', icon: 'PenTool', count: 3 },
     { id: 'contact', label: 'Contact', icon: 'Phone', count: 3 }
 ];
