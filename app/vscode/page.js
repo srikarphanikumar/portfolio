@@ -241,6 +241,43 @@ function ContactContent() {
     return <CodeBlock lines={lines} />;
 }
 
+function WritingContent() {
+    const lines = [
+        <><Kw c="# Writing" /></>,
+        <></>,
+        <><Kw c="## Substack — mSPK Newsletter" /></>,
+        <><Tx c="Weekly articles on frontend craft, browser internals," /></>,
+        <><Tx c="and the art of writing less code that does more." /></>,
+        <></>,
+        <><Tx c="Read at: " /><Str c="https://mspk.substack.com" /></>,
+        <></>,
+        <><Kw c="## Recent Articles (Substack)" /></>,
+        <><Tx c="- $0 and Friends: The DevTools Shortcuts You're Missing" /></>,
+        <><Tx c="- Stop Installing Form Libraries. The Browser Can Do This." /></>,
+        <><Tx c="- The inert Attribute: Stop Writing Focus Trap JavaScript" /></>,
+        <><Tx c="- Stencil is the Framework Nobody Uses (But Maybe Should)" /></>,
+        <></>,
+        <><Kw c="## Medium Articles" /></>,
+        <><Tx c="- Top 20 1-Liners in TypeScript" /></>,
+        <>&nbsp;&nbsp;<Str c="https://medium.com/@srikar.vamsi/top-20-1-liners-in-typescript..." /></>,
+        <><Tx c="- String to Boolean Conversion Guide" /></>,
+        <>&nbsp;&nbsp;<Str c="https://medium.com/@srikar.vamsi/converting-strings-to-booleans..." /></>,
+        <><Tx c="- Supercharge Apps with poly-kit/number-utils" /></>,
+        <>&nbsp;&nbsp;<Str c="https://medium.com/@srikar.vamsi/supercharge-your-apps..." /></>,
+        <><Tx c="- Zapid: ID Generation Reinvented" /></>,
+        <>&nbsp;&nbsp;<Str c="https://medium.com/@srikar.vamsi/zapid-id-generation..." /></>,
+        <></>,
+        <><Kw c="## Writing Philosophy" /></>,
+        <><Tx c="I write about things that would have saved me hours when learning:" /></>,
+        <><Tx c="- Browser-native features that replace heavy libraries" /></>,
+        <><Tx c="- TypeScript patterns for cleaner, safer code" /></>,
+        <><Tx c="- DevTools tricks for faster debugging" /></>,
+        <><Tx c="- Open-source packages I've built" /></>,
+        <><Tx c="- Frontend performance and architecture" /></>,
+    ];
+    return <CodeBlock lines={lines} />;
+}
+
 // ─── File registry ────────────────────────────────────────────────────────────
 const FILES = [
     { name: 'about.js',      icon: '📄', component: AboutContent      },
@@ -248,6 +285,7 @@ const FILES = [
     { name: 'experience.js', icon: '💼', component: ExperienceContent },
     { name: 'projects.js',   icon: '🚀', component: ProjectsContent   },
     { name: 'contact.js',    icon: '📬', component: ContactContent    },
+    { name: 'writing.md',    icon: '📝', component: WritingContent    },
 ];
 
 // ─── SVG activity bar icons ───────────────────────────────────────────────────
@@ -469,8 +507,10 @@ export default function VSCodePage() {
                                     onMouseLeave={e => { if (activeTab !== file.name) e.currentTarget.style.backgroundColor = 'transparent'; }}
                                 >
                                     <span style={{ fontSize: '12px' }}>
-                                        {/* JS file icon color */}
-                                        <span style={{ color: '#f5de19' }}>JS</span>
+                                        {file.name.endsWith('.md')
+                                            ? <span style={{ color: '#42a5f5' }}>MD</span>
+                                            : <span style={{ color: '#f5de19' }}>JS</span>
+                                        }
                                     </span>
                                     <span>{file.name}</span>
                                 </div>
@@ -519,7 +559,10 @@ export default function VSCodePage() {
                                         minWidth: 0,
                                     }}
                                 >
-                                    <span style={{ color: '#f5de19', fontSize: '10px', fontWeight: 'bold' }}>JS</span>
+                                    {tab.endsWith('.md')
+                                        ? <span style={{ color: '#42a5f5', fontSize: '10px', fontWeight: 'bold' }}>MD</span>
+                                        : <span style={{ color: '#f5de19', fontSize: '10px', fontWeight: 'bold' }}>JS</span>
+                                    }
                                     <span>{tab}</span>
                                     <button
                                         onClick={e => closeTab(e, tab)}
@@ -623,7 +666,7 @@ export default function VSCodePage() {
                     {activeTab && <span>⚡ {activeTab}</span>}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <span>JavaScript</span>
+                    <span>{activeTab && activeTab.endsWith('.md') ? 'Markdown' : 'JavaScript'}</span>
                     <span>UTF-8</span>
                     <span>Ln 1, Col 1</span>
                     <span>Spaces: 2</span>
