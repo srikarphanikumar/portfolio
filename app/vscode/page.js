@@ -338,7 +338,7 @@ export default function VSCodePage() {
                 }}
             >
                 <a
-                    href="/"
+                    href="/select"
                     style={{
                         position: 'absolute',
                         left: '12px',

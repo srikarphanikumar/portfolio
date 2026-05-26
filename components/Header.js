@@ -70,7 +70,7 @@ export const Header = ({ onMenuClick, showMenuButton }) => {
             </div>
 
             <div className="flex items-center space-x-2">
-                <Link href="/">
+                <Link href="/select">
                     <span className={`flex items-center px-3 py-2 rounded-lg text-sm ${currentTheme.button} ${currentTheme.buttonHover} ${currentTheme.text} transition-colors duration-200`}>
                         <ArrowLeft className="w-4 h-4 mr-1" />
                         Theme Switcher

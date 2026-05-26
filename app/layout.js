@@ -2,7 +2,7 @@ import '../styles/globals.css';
 
 export const metadata = {
     icons: {
-        icon: '/favicon.jpg',
+        icon: '/favicon.svg',
     },
 };
 

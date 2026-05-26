@@ -35,7 +35,7 @@ const Navigation = () => {
             <nav className="container mx-auto px-4 py-2">
                 <div className="flex items-center justify-between md:justify-center">
                     {/* Theme Switcher Button - Always visible */}
-                    <Link href="/">
+                    <Link href="/select">
                         <motion.span
                             className="flex items-center text-green-300 hover:text-green-100 transition-colors duration-300 mr-4 md:absolute md:left-4"
                             whileHover={{ scale: 1.05 }}
