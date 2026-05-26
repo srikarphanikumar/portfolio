@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHome, FaUser, FaCogs, FaBriefcase, FaEnvelope, FaFolder, FaArrowLeft } from 'react-icons/fa';
+import { FaHome, FaUser, FaCogs, FaBriefcase, FaEnvelope, FaFolder, FaArrowLeft, FaPenNib } from 'react-icons/fa';
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +27,7 @@ const Navigation = () => {
         { name: 'Skills', path: '/terminal/skills', icon: FaCogs },
         { name: 'Experience', path: '/terminal/projects', icon: FaBriefcase },
         { name: 'Projects', path: '/terminal/portfolio', icon: FaFolder },
+        { name: 'Writing', path: '/terminal/writing', icon: FaPenNib },
         { name: 'Contact', path: '/terminal/contact', icon: FaEnvelope }
     ];
 
@@ -35,7 +36,7 @@ const Navigation = () => {
             <nav className="container mx-auto px-4 py-2">
                 <div className="flex items-center justify-between md:justify-center">
                     {/* Theme Switcher Button - Always visible */}
-                    <Link href="/">
+                    <Link href="/select">
                         <motion.span
                             className="flex items-center text-green-300 hover:text-green-100 transition-colors duration-300 mr-4 md:absolute md:left-4"
                             whileHover={{ scale: 1.05 }}

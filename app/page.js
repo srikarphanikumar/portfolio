@@ -1,9 +1,5 @@
-import ThemeSelector from '../components/ThemeSelector';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-    return (
-        <main>
-            <ThemeSelector />
-        </main>
-    );
+    redirect('/terminal');
 }

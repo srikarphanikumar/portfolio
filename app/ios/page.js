@@ -589,7 +589,7 @@ const StatusBar = () => {
         }}>
             {/* Left: back button + time */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <Link href="/" style={{
+                <Link href="/select" style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: 4,
