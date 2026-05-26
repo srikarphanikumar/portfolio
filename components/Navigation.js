@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHome, FaUser, FaCogs, FaBriefcase, FaEnvelope, FaFolder, FaArrowLeft, FaPenNib } from 'react-icons/fa';
+import { FaHome, FaUser, FaCogs, FaBriefcase, FaEnvelope, FaFolder, FaArrowLeft, FaPenNib, FaRocket } from 'react-icons/fa';
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +28,7 @@ const Navigation = () => {
         { name: 'Experience', path: '/terminal/projects', icon: FaBriefcase },
         { name: 'Projects', path: '/terminal/portfolio', icon: FaFolder },
         { name: 'Writing', path: '/terminal/writing', icon: FaPenNib },
+        { name: 'Apps', path: '/apps', icon: FaRocket },
         { name: 'Contact', path: '/terminal/contact', icon: FaEnvelope }
     ];
 

@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import AppsFloat from '../components/AppsFloat';
 
 export const metadata = {
     icons: {
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
         <html lang="en" className="h-full">
             <body className="h-full m-0 p-0 overflow-hidden">
                 {children}
+                <AppsFloat />
             </body>
         </html>
     );
