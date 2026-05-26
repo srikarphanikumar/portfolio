@@ -24,7 +24,6 @@ function PostCard({ post, globalIndex, pageIndex }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.22, delay: pageIndex * 0.04 }}
         >
-            {/* Index + date */}
             <div className="flex items-center justify-between mb-3">
                 <span className="font-mono text-xs text-blue-400/70">
                     [{String(globalIndex + 1).padStart(2, '0')}]
@@ -32,19 +31,16 @@ function PostCard({ post, globalIndex, pageIndex }) {
                 <span className="font-mono text-xs text-white/30">{formatDate(post.pubDate)}</span>
             </div>
 
-            {/* Title */}
             <h2 className="text-gray-100 font-semibold text-sm leading-snug mb-3 group-hover:text-green-400 transition-colors duration-200 flex-1">
                 {post.title}
             </h2>
 
-            {/* Excerpt */}
             {post.excerpt && (
                 <p className="text-white/35 text-xs leading-relaxed line-clamp-3 mb-4">
                     {post.excerpt}
                 </p>
             )}
 
-            {/* Footer */}
             <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/10">
                 <span className="font-mono text-xs text-blue-400/40 group-hover:text-blue-400 transition-colors duration-200">
                     $ read_more
@@ -79,7 +75,6 @@ export default function WritingList({ posts }) {
 
     return (
         <div className="w-full min-h-full flex flex-col px-6 pt-8 pb-10 max-w-7xl mx-auto">
-            {/* Terminal header */}
             <div className="mb-8 font-mono">
                 <div className="flex items-center gap-2 text-sm mb-1">
                     <FaRss className="text-orange-400 h-3.5 w-3.5" />
@@ -97,14 +92,17 @@ export default function WritingList({ posts }) {
                 <div className="text-xs text-white/30">
                     <span className="text-green-400">➜</span>
                     <span className="text-blue-400 mx-2">~</span>
-                    ls posts/ &nbsp;|&nbsp; wc -l
+                    ls posts/ | wc -l
                     <span className="ml-3 text-green-400">{posts.length} articles</span>
-                    <span className="text-white/20 ml-3">·</span>
-                    <span className="ml-3">page {page + 1} / {totalPages}</span>
+                    {totalPages > 1 && (
+                        <>
+                            <span className="text-white/20 ml-3">·</span>
+                            <span className="ml-3">page {page + 1} / {totalPages}</span>
+                        </>
+                    )}
                 </div>
             </div>
 
-            {/* Grid */}
             {posts.length === 0 ? (
                 <div className="font-mono text-sm text-red-400/80 border border-red-400/20 rounded-lg p-6">
                     <p>Error: could not fetch articles.</p>
@@ -139,12 +137,9 @@ export default function WritingList({ posts }) {
                 </AnimatePresence>
             )}
 
-            {/* Pagination */}
             {totalPages > 1 && (
                 <div className="mt-10 flex items-center justify-center gap-2">
-                    <PaginationBtn onClick={() => goTo(0)} disabled={page === 0}>
-                        «
-                    </PaginationBtn>
+                    <PaginationBtn onClick={() => goTo(0)} disabled={page === 0}>«</PaginationBtn>
                     <PaginationBtn onClick={() => goTo(page - 1)} disabled={page === 0}>
                         <FaChevronLeft className="h-3 w-3" />
                     </PaginationBtn>
@@ -166,9 +161,7 @@ export default function WritingList({ posts }) {
                     <PaginationBtn onClick={() => goTo(page + 1)} disabled={page === totalPages - 1}>
                         <FaChevronRight className="h-3 w-3" />
                     </PaginationBtn>
-                    <PaginationBtn onClick={() => goTo(totalPages - 1)} disabled={page === totalPages - 1}>
-                        »
-                    </PaginationBtn>
+                    <PaginationBtn onClick={() => goTo(totalPages - 1)} disabled={page === totalPages - 1}>»</PaginationBtn>
                 </div>
             )}
         </div>

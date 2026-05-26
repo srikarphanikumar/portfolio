@@ -4,7 +4,7 @@ export const revalidate = 86400;
 
 async function getPosts() {
     try {
-        // Substack's API returns up to 50 posts per request; RSS is capped at 20
+        // Substack RSS is capped at 20 items; API returns up to 50
         const res = await fetch('https://mspk.substack.com/api/v1/posts?limit=50', {
             next: { revalidate: 86400 },
         });
