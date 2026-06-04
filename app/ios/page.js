@@ -454,8 +454,18 @@ const AppIcon = ({ app, onOpen, size = 'normal' }) => {
     const [pressed, setPressed] = useState(false);
     const iconSize = size === 'dock' ? 52 : 62;
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onOpen(app.id);
+        }
+    };
+
     return (
         <div
+            role="button"
+            tabIndex={0}
+            aria-label={`Open ${app.label}`}
             style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -466,6 +476,7 @@ const AppIcon = ({ app, onOpen, size = 'normal' }) => {
                 width: size === 'dock' ? 60 : 80,
             }}
             onClick={() => onOpen(app.id)}
+            onKeyDown={handleKeyDown}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -475,6 +486,7 @@ const AppIcon = ({ app, onOpen, size = 'normal' }) => {
             <motion.div
                 animate={{ scale: pressed ? 0.85 : 1 }}
                 transition={{ duration: 0.1 }}
+                aria-hidden="true"
                 style={{
                     width: iconSize,
                     height: iconSize,
@@ -489,7 +501,9 @@ const AppIcon = ({ app, onOpen, size = 'normal' }) => {
             >
                 <app.Icon />
                 {app.badge && (
-                    <div style={{
+                    <div
+                        aria-label={`${app.badge} notifications`}
+                        style={{
                         position: 'absolute',
                         top: -4,
                         right: -4,
@@ -508,7 +522,7 @@ const AppIcon = ({ app, onOpen, size = 'normal' }) => {
                 )}
             </motion.div>
             {size !== 'dock' && (
-                <div style={{
+                <div aria-hidden="true" style={{
                     marginTop: 6,
                     fontSize: 11,
                     color: 'rgba(255,255,255,0.9)',
@@ -551,6 +565,9 @@ const BottomSheet = ({ appId, onClose }) => {
 
     return (
         <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`sheet-title-${appId}`}
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
@@ -576,7 +593,7 @@ const BottomSheet = ({ appId, onClose }) => {
             }}
         >
             {/* Handle bar */}
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 6, flexShrink: 0 }}>
+            <div aria-hidden="true" style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 6, flexShrink: 0 }}>
                 <div style={{ width: 40, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.2)' }} />
             </div>
 
@@ -589,7 +606,7 @@ const BottomSheet = ({ appId, onClose }) => {
                 borderBottom: '1px solid rgba(255,255,255,0.06)',
                 flexShrink: 0,
             }}>
-                <div style={{
+                <div aria-hidden="true" style={{
                     width: 40,
                     height: 40,
                     borderRadius: '22%',
@@ -601,9 +618,10 @@ const BottomSheet = ({ appId, onClose }) => {
                 }}>
                     {app && <app.Icon />}
                 </div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: 'white', flex: 1 }}>{app?.label}</div>
+                <div id={`sheet-title-${appId}`} style={{ fontSize: 20, fontWeight: 700, color: 'white', flex: 1 }}>{app?.label}</div>
                 <button
                     onClick={onClose}
+                    aria-label={`Close ${app?.label}`}
                     style={{
                         width: 32,
                         height: 32,
@@ -656,7 +674,7 @@ const StatusBar = () => {
         }}>
             {/* Left: back button + time */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <Link href="/select" style={{
+                <Link href="/select" aria-label="Back to Theme Switcher" style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: 4,
@@ -671,7 +689,7 @@ const StatusBar = () => {
                     fontSize: 13,
                     fontWeight: 500,
                 }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <polyline points="15 18 9 12 15 6" />
                     </svg>
                     Themes
@@ -680,16 +698,16 @@ const StatusBar = () => {
             </div>
 
             {/* Right: signal, wifi, battery */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div aria-hidden="true" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 {/* Signal bars */}
-                <svg width="17" height="12" viewBox="0 0 17 12" fill="white">
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="white" aria-hidden="true">
                     <rect x="0" y="8" width="3" height="4" rx="0.5" />
                     <rect x="4.5" y="5.5" width="3" height="6.5" rx="0.5" />
                     <rect x="9" y="3" width="3" height="9" rx="0.5" />
                     <rect x="13.5" y="0" width="3" height="12" rx="0.5" />
                 </svg>
                 {/* Wifi */}
-                <svg width="16" height="12" viewBox="0 0 24 18" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                <svg width="16" height="12" viewBox="0 0 24 18" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                     <path d="M1 7c3-3 7-5 11-5s8 2 11 5" />
                     <path d="M4.5 10.5c2-2 4.5-3.5 7.5-3.5s5.5 1.5 7.5 3.5" />
                     <path d="M8 14c1-1 2.5-2 4-2s3 1 4 2" />
@@ -771,28 +789,33 @@ export default function IOSPage() {
             <StatusBar />
 
             {/* App Grid */}
-            <div style={{
+            <main aria-label="App grid" style={{
                 flex: 1,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
             }}>
-                <div style={{
+                <h1 className="sr-only">Srikar Phani Kumar Marti — Portfolio (iOS view)</h1>
+                <ul role="list" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3, 1fr)',
                     gap: '24px 20px',
                     padding: '20px 40px',
                     justifyItems: 'center',
+                    listStyle: 'none',
+                    margin: 0,
                 }}>
                     {APP_ICONS.map(app => (
-                        <AppIcon key={app.id} app={app} onOpen={handleOpen} />
+                        <li key={app.id}>
+                            <AppIcon app={app} onOpen={handleOpen} />
+                        </li>
                     ))}
-                </div>
-            </div>
+                </ul>
+            </main>
 
             {/* Dock */}
-            <Dock onOpen={handleOpen} />
+            <nav aria-label="Dock"><Dock onOpen={handleOpen} /></nav>
 
             {/* Bottom Sheet Overlay */}
             <AnimatePresence>
@@ -801,6 +824,8 @@ export default function IOSPage() {
                         {/* Backdrop */}
                         <motion.div
                             key="backdrop"
+                            role="presentation"
+                            aria-hidden="true"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}

@@ -17,7 +17,8 @@ export const Sidebar = ({ items, activeItem, onItemClick, isExpanded }) => {
     const { currentTheme } = useTheme();
 
     return (
-        <div
+        <nav
+            aria-label="Portfolio sections"
             className={`
                 h-full ${currentTheme.sidebar}
                 transition-all duration-200 ease-in-out
@@ -26,56 +27,61 @@ export const Sidebar = ({ items, activeItem, onItemClick, isExpanded }) => {
                 border-r ${currentTheme.border}
             `}
         >
-            <div className="p-2 flex-1">
+            <ul className="p-2 flex-1 list-none m-0">
                 {items.map((item) => {
                     const IconComponent = iconMap[item.icon];
                     const isActive = activeItem === item.id;
 
                     return (
-                        <div
-                            key={item.id}
-                            onClick={() => onItemClick(item.id)}
-                            className={`
-                                flex items-center
-                                ${isExpanded ? 'px-4' : 'justify-center'} 
-                                py-2 my-1
-                                rounded-lg cursor-pointer
-                                transition-all duration-150 ease-in-out
-                                ${isActive ? currentTheme.active : currentTheme.hover}
-                            `}
-                        >
-                            {IconComponent && (
-                                <IconComponent
-                                    className={`
-                                        w-5 h-5 min-w-[20px]
-                                        ${!isExpanded && 'mx-auto'}
-                                        transition-colors
-                                        ${isActive ? currentTheme.text : currentTheme.text}
-                                    `}
-                                />
-                            )}
-
-                            <div className={`
-                                ${isExpanded
-                                    ? 'opacity-100 ml-3 flex-1'
-                                    : 'opacity-0 w-0 overflow-hidden'
-                                }
-                                transition-all duration-200
-                                whitespace-nowrap
-                            `}>
-                                <span className={currentTheme.text}>
-                                    {item.label}
-                                </span>
-                                {item.count && (
-                                    <span className={`ml-2 text-sm ${isActive ? currentTheme.text : currentTheme.secondaryText}`}>
-                                        {item.count}
-                                    </span>
+                        <li key={item.id}>
+                            <button
+                                onClick={() => onItemClick(item.id)}
+                                aria-current={isActive ? 'page' : undefined}
+                                aria-label={!isExpanded ? item.label : undefined}
+                                className={`
+                                    w-full flex items-center
+                                    ${isExpanded ? 'px-4' : 'justify-center'}
+                                    py-2 my-1
+                                    rounded-lg cursor-pointer
+                                    transition-all duration-150 ease-in-out
+                                    focus:outline-none focus:ring-2 focus:ring-offset-1
+                                    ${isActive ? currentTheme.active : currentTheme.hover}
+                                `}
+                            >
+                                {IconComponent && (
+                                    <IconComponent
+                                        aria-hidden="true"
+                                        className={`
+                                            w-5 h-5 min-w-[20px]
+                                            ${!isExpanded && 'mx-auto'}
+                                            transition-colors
+                                            ${isActive ? currentTheme.text : currentTheme.text}
+                                        `}
+                                    />
                                 )}
-                            </div>
-                        </div>
+
+                                <div className={`
+                                    ${isExpanded
+                                        ? 'opacity-100 ml-3 flex-1'
+                                        : 'opacity-0 w-0 overflow-hidden'
+                                    }
+                                    transition-all duration-200
+                                    whitespace-nowrap
+                                `}>
+                                    <span className={currentTheme.text}>
+                                        {item.label}
+                                    </span>
+                                    {item.count && (
+                                        <span className={`ml-2 text-sm ${isActive ? currentTheme.text : currentTheme.secondaryText}`}>
+                                            {item.count}
+                                        </span>
+                                    )}
+                                </div>
+                            </button>
+                        </li>
                     );
                 })}
-            </div>
-        </div>
+            </ul>
+        </nav>
     );
 };

@@ -40,7 +40,7 @@ export default function GmailTheme() {
                     showMenuButton={isMobile}
                 />
 
-                <div className="flex-1 flex overflow-hidden min-h-0">
+                <main id="main-content" className="flex-1 flex overflow-hidden min-h-0">
                     {/* Sidebar */}
                     <div
                         onMouseEnter={() => !isMobile && setIsHovering(true)}
@@ -89,11 +89,13 @@ export default function GmailTheme() {
                     {/* Mobile overlay */}
                     {showSidebar && isMobile && (
                         <div
+                            role="presentation"
+                            aria-hidden="true"
                             className="fixed inset-0 bg-black bg-opacity-50 z-30"
                             onClick={() => setShowSidebar(false)}
                         />
                     )}
-                </div>
+                </main>
             </div>
         </div>
     );

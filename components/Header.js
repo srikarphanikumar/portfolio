@@ -10,11 +10,11 @@ export const Header = ({ onMenuClick, showMenuButton }) => {
     const { currentTheme } = useTheme();
 
     return (
-        <div
+        <header
             className={`
-                ${currentTheme.secondaryBg} w-full p-4 
-                flex items-center space-x-4 
-                border-b ${currentTheme.border} 
+                ${currentTheme.secondaryBg} w-full p-4
+                flex items-center space-x-4
+                border-b ${currentTheme.border}
                 sticky top-0 z-40
                 shadow-sm backdrop-blur-sm
             `}
@@ -30,15 +30,16 @@ export const Header = ({ onMenuClick, showMenuButton }) => {
                     `}
                     aria-label="Toggle menu"
                 >
-                    <Menu className={`w-6 h-6 ${currentTheme.text}`} />
+                    <Menu aria-hidden="true" className={`w-6 h-6 ${currentTheme.text}`} />
                 </button>
             )}
 
             <div className="flex-1 flex items-center space-x-4 max-w-3xl">
+                <form role="search" aria-label="Portfolio search" className="flex-1" onSubmit={e => e.preventDefault()}>
                 <div
                     className={`
-                        flex items-center flex-1 
-                        ${currentTheme.input} 
+                        flex items-center flex-1
+                        ${currentTheme.input}
                         rounded-lg px-4 py-2.5
                         ring-1 ${currentTheme.border}
                         focus-within:ring-2 focus-within:ring-opacity-50
@@ -47,19 +48,20 @@ export const Header = ({ onMenuClick, showMenuButton }) => {
                     `}
                 >
                     <Search
+                        aria-hidden="true"
                         className={`
-                            w-5 h-5 
+                            w-5 h-5
                             ${currentTheme.secondaryText}
                             flex-shrink-0
                         `}
                     />
                     <input
-                        type="text"
+                        type="search"
                         placeholder="Search in portfolio"
                         className={`
-                            border-none outline-none 
-                            ml-2 w-full 
-                            ${currentTheme.text} 
+                            border-none outline-none
+                            ml-2 w-full
+                            ${currentTheme.text}
                             placeholder:${currentTheme.secondaryText}
                             focus:outline-none
                             bg-transparent
@@ -67,17 +69,18 @@ export const Header = ({ onMenuClick, showMenuButton }) => {
                         aria-label="Search in portfolio"
                     />
                 </div>
+                </form>
             </div>
 
             <div className="flex items-center space-x-2">
                 <Link href="/select">
                     <span className={`flex items-center px-3 py-2 rounded-lg text-sm ${currentTheme.button} ${currentTheme.buttonHover} ${currentTheme.text} transition-colors duration-200`}>
-                        <ArrowLeft className="w-4 h-4 mr-1" />
+                        <ArrowLeft aria-hidden="true" className="w-4 h-4 mr-1" />
                         Theme Switcher
                     </span>
                 </Link>
                 <ThemeSwitcher />
             </div>
-        </div>
+        </header>
     );
 };

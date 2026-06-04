@@ -86,15 +86,16 @@ function AppRow({ app }) {
                             border: `1px solid rgba(${app.rgb},0.2)`,
                         }}
                     >
-                        Visit <FaExternalLinkAlt className="h-2.5 w-2.5" />
+                        Visit <FaExternalLinkAlt className="h-2.5 w-2.5" aria-hidden="true" />
                     </a>
                     {app.tools && (
                         <button
                             onClick={() => setOpen(o => !o)}
-                            className="flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors duration-150"
+                            aria-expanded={open}
+                            className="flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-white/30 rounded"
                         >
                             {open ? 'Hide' : 'Show'} tools
-                            <FaChevronDown className={`h-2.5 w-2.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                            <FaChevronDown aria-hidden="true" className={`h-2.5 w-2.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
                         </button>
                     )}
                 </div>
@@ -160,6 +161,9 @@ export default function AppsFloat() {
             <AnimatePresence>
                 {open && (
                     <motion.div
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Things I've Built"
                         className="fixed top-0 right-0 bottom-0 z-[9998] flex flex-col"
                         style={{
                             width: 'min(380px, 100vw)',
@@ -192,9 +196,10 @@ export default function AppsFloat() {
                                 </Link>
                                 <button
                                     onClick={() => setOpen(false)}
-                                    className="text-white/40 hover:text-white/80 transition-colors p-1.5"
+                                    aria-label="Close apps panel"
+                                    className="text-white/40 hover:text-white/80 transition-colors p-1.5 focus:outline-none focus:ring-2 focus:ring-white/40 rounded"
                                 >
-                                    <FaTimes className="h-4 w-4" />
+                                    <FaTimes className="h-4 w-4" aria-hidden="true" />
                                 </button>
                             </div>
                         </div>
@@ -212,6 +217,9 @@ export default function AppsFloat() {
             {/* Floating trigger button */}
             <motion.button
                 onClick={() => setOpen(o => !o)}
+                aria-expanded={open}
+                aria-haspopup="dialog"
+                aria-label={open ? 'Close apps panel' : 'Open apps panel — Things I\'ve Built'}
                 className="fixed bottom-6 right-6 z-[9999] flex items-center gap-2 px-4 py-2.5 rounded-full font-semibold text-sm shadow-2xl"
                 style={{
                     background: 'rgba(15,18,30,0.9)',
@@ -225,7 +233,7 @@ export default function AppsFloat() {
                 whileTap={{ scale: 0.97 }}
                 animate={open ? { rotate: 15 } : { rotate: 0 }}
             >
-                <FaRocket className="h-3.5 w-3.5 text-indigo-400" />
+                <FaRocket className="h-3.5 w-3.5 text-indigo-400" aria-hidden="true" />
                 <span>My Apps</span>
             </motion.button>
         </>

@@ -2,6 +2,8 @@ import WritingList from '../../../components/Writing';
 
 export const revalidate = 86400;
 
+export const metadata = { title: 'Writing' };
+
 async function getPosts() {
     try {
         // Substack RSS is capped at 20 items; API returns up to 50

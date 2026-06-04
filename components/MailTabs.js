@@ -17,17 +17,27 @@ export const MailTabs = ({ tabs, activeTab, onTabChange }) => {
     const { currentTheme } = useTheme();
 
     return (
-        <div className={`flex border-b ${currentTheme.border} overflow-x-auto ${currentTheme.secondaryBg}`}>
+        <div
+            role="tablist"
+            aria-label="Portfolio sections"
+            className={`flex border-b ${currentTheme.border} overflow-x-auto ${currentTheme.secondaryBg}`}
+        >
             {tabs.map((tab) => {
                 const IconComponent = iconMap[tab.icon];
+                const isActive = activeTab === tab.id;
 
                 return (
                     <button
                         key={tab.id}
+                        role="tab"
+                        aria-selected={isActive}
+                        aria-controls={`tabpanel-${tab.id}`}
+                        id={`tab-${tab.id}`}
                         onClick={() => onTabChange(tab.id)}
                         className={`
                             flex items-center px-6 py-4 border-b-2 transition-colors relative whitespace-nowrap
-                            ${activeTab === tab.id
+                            focus:outline-none focus:ring-2 focus:ring-inset
+                            ${isActive
                                 ? currentTheme.activeTab
                                 : `border-transparent ${currentTheme.text} ${currentTheme.hover}`
                             }
@@ -36,12 +46,13 @@ export const MailTabs = ({ tabs, activeTab, onTabChange }) => {
                         <div className="flex items-center space-x-2">
                             {IconComponent && (
                                 <IconComponent
-                                    className={`w-4 h-4 ${activeTab === tab.id ? currentTheme.accent || currentTheme.text : currentTheme.text}`}
+                                    aria-hidden="true"
+                                    className={`w-4 h-4 ${isActive ? currentTheme.accent || currentTheme.text : currentTheme.text}`}
                                 />
                             )}
                             <span>{tab.label}</span>
                             {tab.count && (
-                                <span className={`ml-2 text-sm ${activeTab === tab.id ? currentTheme.accent || currentTheme.text : currentTheme.secondaryText}`}>
+                                <span className={`ml-2 text-sm ${isActive ? currentTheme.accent || currentTheme.text : currentTheme.secondaryText}`}>
                                     {tab.count}
                                 </span>
                             )}

@@ -66,6 +66,7 @@ const HeroContent = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
+                    aria-hidden="true"
                 >
                     <motion.div
                         className="flex justify-center space-x-4 md:space-x-8"

@@ -379,6 +379,9 @@ const About = () => {
 
             <div
                 ref={terminalRef}
+                role="log"
+                aria-live="polite"
+                aria-label="Terminal output"
                 className="flex-1 overflow-auto font-mono text-sm text-[#CDD6F4] mb-4 p-2 bg-[#181825] rounded-lg"
             >
                 {history.map((entry, index) => (
@@ -388,17 +391,20 @@ const About = () => {
                 ))}
             </div>
 
-            <form onSubmit={handleSubmit} className="flex items-center bg-[#181825] p-2 rounded-lg">
-                <span className="text-[#A6E3A1]">➜</span>
-                <span className="text-[#89B4FA] mx-2">~</span>
+            <form onSubmit={handleSubmit} className="flex items-center bg-[#181825] p-2 rounded-lg" aria-label="Terminal command input">
+                <span className="text-[#A6E3A1]" aria-hidden="true">➜</span>
+                <span className="text-[#89B4FA] mx-2" aria-hidden="true">~</span>
+                <label htmlFor="terminal-input" className="sr-only">Enter a command (type help for available commands)</label>
                 <input
                     ref={inputRef}
+                    id="terminal-input"
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     className="flex-1 bg-transparent outline-none text-[#CDD6F4] font-mono"
                     autoFocus
+                    aria-autocomplete="list"
                 />
             </form>
         </div>

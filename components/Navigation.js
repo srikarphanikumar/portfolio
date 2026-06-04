@@ -34,7 +34,7 @@ const Navigation = () => {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg">
-            <nav className="container mx-auto px-4 py-2">
+            <nav className="container mx-auto px-4 py-2" aria-label="Main navigation">
                 <div className="flex items-center justify-between md:justify-center">
                     {/* Theme Switcher Button - Always visible */}
                     <Link href="/select">
@@ -43,7 +43,7 @@ const Navigation = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <FaArrowLeft className="h-4 w-4 mr-2" />
+                            <FaArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
                             <span className="text-sm">Theme Switcher</span>
                         </motion.span>
                     </Link>
@@ -53,10 +53,13 @@ const Navigation = () => {
                         <motion.button
                             className="text-green-300 p-2"
                             onClick={() => setIsOpen(!isOpen)}
+                            aria-expanded={isOpen}
+                            aria-controls="nav-menu"
+                            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
                             </svg>
                         </motion.button>
@@ -66,6 +69,7 @@ const Navigation = () => {
                 <AnimatePresence>
                     {(!isMobile || isOpen) && (
                         <motion.ul
+                            id="nav-menu"
                             className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 bg-gray-900 md:bg-transparent p-4 md:p-0"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -78,14 +82,13 @@ const Navigation = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <Link href={item.path}>
+                                    <Link href={item.path} aria-current={typeof window !== 'undefined' && window.location.pathname === item.path ? 'page' : undefined}>
                                         <motion.span
                                             className="flex flex-col items-center text-green-300 hover:text-green-100 transition-colors duration-300"
                                             whileHover={{ scale: 1.1, rotate: 5 }}
                                             whileTap={{ scale: 0.9 }}
                                         >
-                                            <span className="sr-only">{item.name}</span>
-                                            <item.icon className="h-6 w-6" />
+                                            <item.icon className="h-6 w-6" aria-hidden="true" />
                                             <span className="text-xs mt-1">{item.name}</span>
                                         </motion.span>
                                     </Link>

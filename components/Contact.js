@@ -10,7 +10,7 @@ const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
 const PaperAirplaneAnimation = () => (
-    <svg width="100" height="100" viewBox="0 0 100 100">
+    <svg width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
         <motion.path
             d="M10 50 L90 10 L50 90 L45 55 L10 50"
             fill="none"
@@ -80,6 +80,7 @@ const Contact = () => {
                                 className="w-full h-full"
                                 viewBox="0 0 1440 320"
                                 preserveAspectRatio="none"
+                                aria-hidden="true"
                             >
                                 <motion.path
                                     fill="rgba(16, 185, 129, 0.1)"
@@ -136,7 +137,7 @@ const Contact = () => {
                             {/* Your existing form fields */}
                             <div className="mb-6">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-emerald-400">
-                                    <FaUser className="inline mr-2" />
+                                    <FaUser className="inline mr-2" aria-hidden="true" />
                                     Name
                                 </label>
                                 <input
@@ -151,7 +152,7 @@ const Contact = () => {
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-emerald-400">
-                                    <FaEnvelope className="inline mr-2" />
+                                    <FaEnvelope className="inline mr-2" aria-hidden="true" />
                                     Email
                                 </label>
                                 <input
@@ -166,7 +167,7 @@ const Contact = () => {
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="message" className="block mb-2 text-sm font-medium text-emerald-400">
-                                    <FaComment className="inline mr-2" />
+                                    <FaComment className="inline mr-2" aria-hidden="true" />
                                     Message
                                 </label>
                                 <textarea
@@ -185,6 +186,8 @@ const Contact = () => {
                                 whileTap={{ scale: 0.95 }}
                                 className="w-full bg-emerald-500 text-white px-4 py-3 rounded-md hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 flex items-center justify-center transition-colors duration-300"
                                 disabled={isSubmitting}
+                                aria-busy={isSubmitting}
+                                aria-label={isSubmitting ? 'Sending message…' : 'Send message'}
                             >
                                 {isSubmitting ? (
                                     isAnimating ? (
@@ -201,12 +204,14 @@ const Contact = () => {
                                     "Send Message"
                                 )}
                             </motion.button>
-                            {submitStatus === 'success' && (
-                                <p className="mt-4 text-emerald-400 text-center">Message sent successfully!</p>
-                            )}
-                            {submitStatus === 'error' && (
-                                <p className="mt-4 text-red-400 text-center">Error sending message. Please try again.</p>
-                            )}
+                            <div aria-live="polite" aria-atomic="true">
+                                {submitStatus === 'success' && (
+                                    <p className="mt-4 text-emerald-400 text-center">Message sent successfully!</p>
+                                )}
+                                {submitStatus === 'error' && (
+                                    <p className="mt-4 text-red-400 text-center">Error sending message. Please try again.</p>
+                                )}
+                            </div>
                         </motion.form>
                     </div>
                 </div>

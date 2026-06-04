@@ -352,6 +352,8 @@ export default function VSCodePage() {
 
     return (
         <div
+            role="application"
+            aria-label="VS Code portfolio"
             style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -362,6 +364,7 @@ export default function VSCodePage() {
                 fontFamily: "'Segoe UI', system-ui, sans-serif",
             }}
         >
+            <h1 className="sr-only">Srikar Phani Kumar Marti — Portfolio (VS Code view)</h1>
             {/* ── Title bar ── */}
             <div
                 style={{
@@ -377,6 +380,7 @@ export default function VSCodePage() {
             >
                 <a
                     href="/select"
+                    aria-label="Back to Theme Switcher"
                     style={{
                         position: 'absolute',
                         left: '12px',
@@ -404,6 +408,8 @@ export default function VSCodePage() {
 
                 {/* ── Activity bar ── */}
                 <div
+                    role="toolbar"
+                    aria-label="Activity bar"
                     style={{
                         width: '48px',
                         backgroundColor: C.activityBg,
@@ -420,6 +426,8 @@ export default function VSCodePage() {
                         <button
                             key={id}
                             title={title}
+                            aria-label={title}
+                            aria-pressed={activeActivity === id}
                             onClick={() => setActiveActivity(id === activeActivity ? null : id)}
                             style={{
                                 width: '40px',
@@ -487,12 +495,18 @@ export default function VSCodePage() {
                         </div>
 
                         {/* File list */}
-                        <div style={{ overflowY: 'auto', flex: 1 }}>
+                        <div role="tree" aria-label="Portfolio files" style={{ overflowY: 'auto', flex: 1 }}>
                             {FILES.map(file => (
-                                <div
+                                <button
                                     key={file.name}
+                                    role="treeitem"
+                                    aria-selected={activeTab === file.name}
                                     onClick={() => openFile(file.name)}
                                     style={{
+                                        width: '100%',
+                                        background: 'none',
+                                        border: 'none',
+                                        textAlign: 'left',
                                         padding: '4px 12px 4px 28px',
                                         cursor: 'pointer',
                                         display: 'flex',
@@ -513,17 +527,19 @@ export default function VSCodePage() {
                                         }
                                     </span>
                                     <span>{file.name}</span>
-                                </div>
+                                </button>
                             ))}
                         </div>
                     </div>
                 )}
 
                 {/* ── Editor area ── */}
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <main aria-label="Code editor" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
                     {/* Tab bar */}
                     <div
+                        role="tablist"
+                        aria-label="Open files"
                         style={{
                             height: '35px',
                             backgroundColor: C.tabBar,
@@ -540,13 +556,13 @@ export default function VSCodePage() {
                             return (
                                 <div
                                     key={tab}
-                                    onClick={() => setActiveTab(tab)}
+                                    role="tab"
+                                    aria-selected={isActive}
                                     style={{
                                         display: 'flex',
                                         alignItems: 'center',
                                         gap: '8px',
                                         padding: '0 14px',
-                                        cursor: 'pointer',
                                         backgroundColor: isActive ? C.tabActive : C.tabInactive,
                                         color: isActive ? '#ffffff' : '#969696',
                                         fontSize: '13px',
@@ -555,17 +571,34 @@ export default function VSCodePage() {
                                         whiteSpace: 'nowrap',
                                         flexShrink: 0,
                                         fontFamily: 'monospace',
-                                        transition: 'background 0.1s',
                                         minWidth: 0,
                                     }}
                                 >
-                                    {tab.endsWith('.md')
-                                        ? <span style={{ color: '#42a5f5', fontSize: '10px', fontWeight: 'bold' }}>MD</span>
-                                        : <span style={{ color: '#f5de19', fontSize: '10px', fontWeight: 'bold' }}>JS</span>
-                                    }
-                                    <span>{tab}</span>
+                                    <button
+                                        onClick={() => setActiveTab(tab)}
+                                        aria-label={`Switch to ${tab}`}
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px',
+                                            background: 'none',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            color: 'inherit',
+                                            fontSize: 'inherit',
+                                            fontFamily: 'inherit',
+                                            padding: 0,
+                                        }}
+                                    >
+                                        {tab.endsWith('.md')
+                                            ? <span style={{ color: '#42a5f5', fontSize: '10px', fontWeight: 'bold' }}>MD</span>
+                                            : <span style={{ color: '#f5de19', fontSize: '10px', fontWeight: 'bold' }}>JS</span>
+                                        }
+                                        <span>{tab}</span>
+                                    </button>
                                     <button
                                         onClick={e => closeTab(e, tab)}
+                                        aria-label={`Close ${tab}`}
                                         style={{
                                             background: 'none',
                                             border: 'none',
@@ -642,7 +675,7 @@ export default function VSCodePage() {
                             </div>
                         )}
                     </div>
-                </div>
+                </main>
             </div>
 
             {/* ── Status bar ── */}

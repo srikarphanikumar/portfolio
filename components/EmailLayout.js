@@ -27,32 +27,46 @@ export const EmailLayout = ({
     return (
         <div className="flex-1 flex min-h-0">
             {/* Email List */}
-            <div className={`
+            <div
+                role="tabpanel"
+                aria-label="Email list"
+                className={`
                 ${selectedEmail && !isMobileView ? 'w-1/2' : 'w-full'}
                 ${selectedEmail && isMobileView ? 'hidden' : 'block'}
                 border-r ${currentTheme.border} overflow-auto
                 ${currentTheme.secondaryBg}
                 flex flex-col min-h-0
             `}>
+                <ul role="list" className="list-none m-0 p-0">
                 {emails.map((email) => (
-                    <div
-                        key={email.id}
+                    <li key={email.id}>
+                    <button
                         onClick={() => onEmailSelect(email.id)}
+                        aria-pressed={selectedEmailId === email.id}
+                        aria-label={`Open email: ${email.subject}`}
                         className={`
-                            flex items-center p-4 cursor-pointer
+                            w-full flex items-center p-4 cursor-pointer text-left
                             ${selectedEmailId === email.id ? currentTheme.activeMailItem : currentTheme.mailItem}
                             transition-colors duration-150
+                            focus:outline-none focus:ring-2 focus:ring-inset
                         `}
                     >
                         <input
                             type="checkbox"
+                            aria-label={`Select email: ${email.subject}`}
                             className="mr-2 accent-current"
                             onClick={(e) => e.stopPropagation()}
                         />
-                        <Star
-                            className={`w-5 h-5 ${currentTheme.text} hover:text-yellow-400 mr-2 transition-colors`}
+                        <button
+                            aria-label={`Star email: ${email.subject}`}
                             onClick={(e) => e.stopPropagation()}
+                            className="focus:outline-none focus:ring-2 rounded mr-2"
+                        >
+                        <Star
+                            className={`w-5 h-5 ${currentTheme.text} hover:text-yellow-400 transition-colors`}
+                            aria-hidden="true"
                         />
+                        </button>
                         <div className="flex-1 min-w-0">
                             <div className={`font-medium ${currentTheme.text} truncate`}>
                                 {email.subject}
@@ -69,8 +83,10 @@ export const EmailLayout = ({
                                 <Paperclip className={`w-4 h-4 ${currentTheme.text} mt-1`} />
                             )}
                         </div>
-                    </div>
+                    </button>
+                    </li>
                 ))}
+                </ul>
             </div>
 
             {/* Email Content */}
@@ -87,9 +103,10 @@ export const EmailLayout = ({
                             </h2>
                             <button
                                 onClick={() => onEmailSelect(null)}
-                                className={`p-2 rounded-lg ${currentTheme.button} ${currentTheme.buttonHover}`}
+                                aria-label="Close email"
+                                className={`p-2 rounded-lg ${currentTheme.button} ${currentTheme.buttonHover} focus:outline-none focus:ring-2`}
                             >
-                                <X className={`w-5 h-5 ${currentTheme.text}`} />
+                                <X className={`w-5 h-5 ${currentTheme.text}`} aria-hidden="true" />
                             </button>
                         </div>
 
