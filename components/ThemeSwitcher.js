@@ -34,8 +34,9 @@ export const ThemeSwitcher = () => {
         <Menu as="div" className="relative">
             <Menu.Button
                 className={`p-2 rounded-full ${currentTheme.button} ${currentTheme.buttonHover}`}
+                aria-label="Change colour theme"
             >
-                <Palette className={currentTheme.iconButton} />
+                <Palette className={currentTheme.iconButton} aria-hidden="true" />
             </Menu.Button>
             <Transition
                 enter="transition duration-100 ease-out"

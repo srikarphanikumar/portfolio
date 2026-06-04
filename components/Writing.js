@@ -19,16 +19,17 @@ function PostCard({ post, globalIndex, pageIndex }) {
             href={post.link}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`Read article: ${post.title} (opens in new tab)`}
             className="group flex flex-col bg-gray-800/60 border border-white/10 rounded-xl p-5 hover:border-green-400/40 hover:bg-gray-800 transition-all duration-200 cursor-pointer"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.22, delay: pageIndex * 0.04 }}
         >
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-3" aria-hidden="true">
                 <span className="font-mono text-xs text-blue-400/70">
                     [{String(globalIndex + 1).padStart(2, '0')}]
                 </span>
-                <span className="font-mono text-xs text-white/30">{formatDate(post.pubDate)}</span>
+                <span className="font-mono text-xs text-white/50">{formatDate(post.pubDate)}</span>
             </div>
 
             <h2 className="text-gray-100 font-semibold text-sm leading-snug mb-3 group-hover:text-green-400 transition-colors duration-200 flex-1">
@@ -36,27 +37,28 @@ function PostCard({ post, globalIndex, pageIndex }) {
             </h2>
 
             {post.excerpt && (
-                <p className="text-white/35 text-xs leading-relaxed line-clamp-3 mb-4">
+                <p className="text-white/60 text-xs leading-relaxed line-clamp-3 mb-4">
                     {post.excerpt}
                 </p>
             )}
 
-            <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/10">
-                <span className="font-mono text-xs text-blue-400/40 group-hover:text-blue-400 transition-colors duration-200">
+            <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/10" aria-hidden="true">
+                <span className="font-mono text-xs text-blue-400/70 group-hover:text-blue-400 transition-colors duration-200">
                     $ read_more
                 </span>
-                <FaExternalLinkAlt className="h-3 w-3 text-white/20 group-hover:text-green-400 transition-colors duration-200 flex-shrink-0" />
+                <FaExternalLinkAlt className="h-3 w-3 text-white/40 group-hover:text-green-400 transition-colors duration-200 flex-shrink-0" aria-hidden="true" />
             </div>
         </motion.a>
     );
 }
 
-function PaginationBtn({ onClick, disabled, children }) {
+function PaginationBtn({ onClick, disabled, children, label }) {
     return (
         <button
             onClick={onClick}
             disabled={disabled}
-            className="w-8 h-8 flex items-center justify-center rounded font-mono text-xs border border-white/10 text-white/40 hover:border-green-400/50 hover:text-green-400 disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+            aria-label={label}
+            className="w-8 h-8 flex items-center justify-center rounded font-mono text-xs border border-white/10 text-white/60 hover:border-green-400/50 hover:text-green-400 disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
         >
             {children}
         </button>
@@ -75,94 +77,100 @@ export default function WritingList({ posts }) {
 
     return (
         <div className="w-full min-h-full flex flex-col px-6 pt-8 pb-10 max-w-7xl mx-auto">
-            <div className="mb-8 font-mono">
+            <header className="mb-8 font-mono">
                 <div className="flex items-center gap-2 text-sm mb-1">
-                    <FaRss className="text-orange-400 h-3.5 w-3.5" />
+                    <FaRss className="text-orange-400 h-3.5 w-3.5" aria-hidden="true" />
                     <span className="text-green-400">~/writing</span>
-                    <span className="text-white/20">·</span>
+                    <span className="text-white/20" aria-hidden="true">·</span>
                     <a
                         href="https://mspk.substack.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white/40 hover:text-blue-400 transition-colors"
+                        aria-label="Visit Srikar's Substack newsletter (opens in new tab)"
+                        className="text-white/70 hover:text-blue-400 transition-colors"
                     >
                         mspk.substack.com
                     </a>
                 </div>
-                <div className="text-xs text-white/30">
-                    <span className="text-green-400">➜</span>
-                    <span className="text-blue-400 mx-2">~</span>
-                    ls posts/ | wc -l
+                <div className="text-xs text-white/50" aria-live="polite">
+                    <span className="text-green-400" aria-hidden="true">➜</span>
+                    <span className="text-blue-400 mx-2" aria-hidden="true">~</span>
+                    <span aria-hidden="true">ls posts/ | wc -l</span>
                     <span className="ml-3 text-green-400">{posts.length} articles</span>
                     {totalPages > 1 && (
                         <>
-                            <span className="text-white/20 ml-3">·</span>
-                            <span className="ml-3">page {page + 1} / {totalPages}</span>
+                            <span className="text-white/20 ml-3" aria-hidden="true">·</span>
+                            <span className="ml-3">page {page + 1} of {totalPages}</span>
                         </>
                     )}
                 </div>
-            </div>
+            </header>
 
             {posts.length === 0 ? (
-                <div className="font-mono text-sm text-red-400/80 border border-red-400/20 rounded-lg p-6">
+                <div className="font-mono text-sm text-red-400/80 border border-red-400/20 rounded-lg p-6" role="alert">
                     <p>Error: could not fetch articles.</p>
                     <a
                         href="https://mspk.substack.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white/40 hover:text-blue-400 underline mt-1 block"
+                        className="text-white/70 hover:text-blue-400 underline mt-1 block"
                     >
                         Visit mspk.substack.com directly →
                     </a>
                 </div>
             ) : (
                 <AnimatePresence mode="wait">
-                    <motion.div
+                    <motion.ul
                         key={page}
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 flex-1"
+                        role="list"
+                        aria-label={`Articles, page ${page + 1} of ${totalPages || 1}`}
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 flex-1 list-none m-0 p-0"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.15 }}
                     >
                         {slice.map((post, i) => (
-                            <PostCard
-                                key={post.link}
-                                post={post}
-                                globalIndex={page * PER_PAGE + i}
-                                pageIndex={i}
-                            />
+                            <li key={post.link}>
+                                <PostCard
+                                    post={post}
+                                    globalIndex={page * PER_PAGE + i}
+                                    pageIndex={i}
+                                />
+                            </li>
                         ))}
-                    </motion.div>
+                    </motion.ul>
                 </AnimatePresence>
             )}
 
             {totalPages > 1 && (
-                <div className="mt-10 flex items-center justify-center gap-2">
-                    <PaginationBtn onClick={() => goTo(0)} disabled={page === 0}>«</PaginationBtn>
-                    <PaginationBtn onClick={() => goTo(page - 1)} disabled={page === 0}>
-                        <FaChevronLeft className="h-3 w-3" />
+                <nav aria-label="Article pagination" className="mt-10 flex items-center justify-center gap-2">
+                    <PaginationBtn onClick={() => goTo(0)} disabled={page === 0} label="First page">«</PaginationBtn>
+                    <PaginationBtn onClick={() => goTo(page - 1)} disabled={page === 0} label="Previous page">
+                        <FaChevronLeft className="h-3 w-3" aria-hidden="true" />
                     </PaginationBtn>
 
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i}
                             onClick={() => goTo(i)}
+                            aria-label={`Page ${i + 1}`}
+                            aria-current={i === page ? 'page' : undefined}
                             className={`w-8 h-8 flex items-center justify-center rounded font-mono text-xs border transition-all duration-150 ${
                                 i === page
                                     ? 'border-green-400/60 text-green-400 bg-green-400/10'
-                                    : 'border-white/10 text-white/40 hover:border-green-400/50 hover:text-green-400'
+                                    : 'border-white/10 text-white/60 hover:border-green-400/50 hover:text-green-400'
                             }`}
                         >
                             {i + 1}
                         </button>
                     ))}
 
-                    <PaginationBtn onClick={() => goTo(page + 1)} disabled={page === totalPages - 1}>
-                        <FaChevronRight className="h-3 w-3" />
+                    <PaginationBtn onClick={() => goTo(page + 1)} disabled={page === totalPages - 1} label="Next page">
+                        <FaChevronRight className="h-3 w-3" aria-hidden="true" />
                     </PaginationBtn>
-                    <PaginationBtn onClick={() => goTo(totalPages - 1)} disabled={page === totalPages - 1}>»</PaginationBtn>
-                </div>
+                    <PaginationBtn onClick={() => goTo(totalPages - 1)} disabled={page === totalPages - 1} label="Last page">»</PaginationBtn>
+                </nav>
             )}
         </div>
     );
