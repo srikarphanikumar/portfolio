@@ -179,7 +179,7 @@ export default function CShapeTimeline() {
                         ✦ The Chronicles of ✦
                     </p>
                     <h1 className="text-3xl md:text-4xl font-bold font-serif mt-1" style={{ color: '#3d1f00' }}>
-                        Srikar's Adventure Map
+                        Srikar&apos;s Adventure Map
                     </h1>
                     <p className="text-xs tracking-widest mt-1 font-serif italic" style={{ color: '#7a5c2e' }}>
                         — A Career Expedition, Charted —
